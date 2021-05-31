@@ -1,24 +1,49 @@
-# README
+# 大喜利レジェンドロード
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+あなたの大喜利力を数値化できるサイトです。
+ユーザーは、以下のことができます。
+* お題に対して大喜利を投稿
+* 他のユーザーの大喜利を評価
+* 管理者にお題を提案できる
 
-Things you may want to cover:
+自分が投稿した大喜利の評価、他のユーザーの投稿を評価した回数、お題が採用された回数に応じて経験値がもらえて、最強の称号「レジェンド」を目指す。
+楽しみながら大喜利力を鍛えていけます。
 
-* Ruby version
+### サイトテーマ
+大喜利サイト
 
-* System dependencies
+### テーマを選んだ理由
+テーマを選ぶ際に、実際に使ってもらえるサービスか、楽しい気持ちになるかの2点を重視して考えました。  
+大喜利であれば、ターゲットユーザーが幅広く、誰もが楽しい気持ちになれると思ったので大喜利にしました。  
+自分の大喜利力を評価してもらいたい人、今まで挑戦したことないけど大喜利にチャレンジしてみたい人、面白い大喜利をただただ見たい人など
+投稿しても投稿しなくても楽しめる点が大喜利の魅力です。
+また、大喜利というのが、多角的に物事をとらえる能力だと思うので、大喜利サイトを通じて色んな方の視点を
+取り入れてもらうことで、学びの場にもなるのではと思っています。
+多くのユーザーが楽しめるし学びにもなることから、テーマを大喜利にしました。
 
-* Configuration
+### ターゲットユーザー
+* 自分の大喜利力に自信がある人
+* 新たな視点を発見したい人
+* ただただ笑いたい人
 
-* Database creation
+### 主な利用シーン
+* 通勤通学時間やスキマ時間
+* 落ち込んでいるとき
 
-* Database initialization
+## 設計書
+<...>
 
-* How to run the test suite
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1o1n3DucDrLigx3c-3y1MRcXxsiqJ4rFfTe10YpPmXlg/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
