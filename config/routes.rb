@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get 'contacts/new'
+  get 'contacts/confirm'
+  get 'contacts/complete'
+  get 'likes/index'
+  get 'answers/index'
+  get 'themes/new'
+  get 'themes/index'
+  get 'themes/show'
+  get 'users/index'
+  get 'users/show'
+  get 'users/edit'
   devise_for :users
   root to:'homes#top'
   get 'homes/guide'
