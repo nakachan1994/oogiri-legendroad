@@ -17,12 +17,17 @@ class ThemesController < ApplicationController
   end
 
   def index
+    @themes = Theme.all.order(created_at: :desc)
   end
 
   def show
+    @theme = Theme.find(params[:id])
   end
 
   def destroy
+    @theme = Theme.find(params[:id])
+    @theme.destroy
+    redirect_to new_theme_path
   end
 
   private

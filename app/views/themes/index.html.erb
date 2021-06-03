@@ -1,2 +1,19 @@
-<h1>Themes#index</h1>
-<p>Find me in app/views/themes/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    新着お題
+    <% @themes.each do |theme| %>
+      <div>
+        <%= link_to user_path(theme.user_id) do %>
+          <%= theme.user.name %>
+        <% end %>
+        <%= attachment_image_tag theme, :image, size: '300x150' %>
+        <%= theme.content %>
+        <%= link_to theme_path(theme.id) do %>
+          <%= theme.answers.count %>回答数
+        <% end %>
+        <%= theme.updated_at.to_s(:datetime_jp) %>
+        <%= link_to '回答する', theme_path(theme.id) %>
+      </div>
+    <% end %>
+  </div>
+</div>

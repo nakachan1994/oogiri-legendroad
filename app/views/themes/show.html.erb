@@ -1,2 +1,25 @@
-<h1>Themes#show</h1>
-<p>Find me in app/views/themes/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div>
+      <%= link_to user_path(@theme.user_id) do %>
+        <%= @theme.user.name %>
+      <% end %>
+      <%= attachment_image_tag @theme, :image, size: '300x150' %>
+      <%= @theme.content %>
+      <%= @theme.answers.count %>回答数
+      <%= @theme.updated_at.to_s(:datetime_jp) %>
+      <% if current_user.id == @theme.user_id %>
+        <%= link_to '削除', theme_path(@theme), method: :delete %>
+      <% end %>
+      <!--回答一覧-->
+      <% if @theme.answers.present? %>
+        <% @theme.answers.each do |answer| %>
+          <%= answer.content %>
+          <%= answer.user.name %>
+        <% end %>
+      <% else %>
+        まだ回答がありません
+      <% end %>
+    </div>
+  </div>
+</div>

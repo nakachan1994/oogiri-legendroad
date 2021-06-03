@@ -5,9 +5,25 @@
       <%= f.attachment_field :image %>
       <%= f.label :content, 'お題' %>
       <%= f.text_area :content %>
+      <%= f.submit '提案' %>
     <% end %>
   </div>
   <div class="row">
-    一覧
+    <% if @themes.present? %>
+      一覧
+      <% @themes.each do |theme| %>
+        <%= attachment_image_tag theme, :image, size: '300x150' %>
+        <%= theme.content %>
+        <% if theme.status == false %>
+          提案中
+        <% else %>
+          採用済
+        <% end %>
+        <%= theme.updated_at.to_s(:datetime_jp) %>
+        <%= link_to '削除', theme_path(theme.id), method: :delete %>
+      <% end %>
+    <% else %>
+      まだ提案したお題はありません
+    <% end %>
   </div>
 </div>
