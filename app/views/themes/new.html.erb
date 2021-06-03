@@ -1,2 +1,13 @@
-<h1>Themes#new</h1>
-<p>Find me in app/views/themes/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= form_with model: @theme, local:true do |f| %>
+      <%= f.label :image, 'お題画像' %>
+      <%= f.attachment_field :image %>
+      <%= f.label :content, 'お題' %>
+      <%= f.text_area :content %>
+    <% end %>
+  </div>
+  <div class="row">
+    一覧
+  </div>
+</div>

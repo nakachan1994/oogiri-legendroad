@@ -17,18 +17,18 @@
       <% end %>
       <ul>
         <% if user_signed_in? %>
-          <li><%= link_to 'お題一覧',root_path %></li>
-          <li><%= link_to '回答一覧',root_path %></li>
-          <li><%= link_to 'ランキング',root_path %></li>
-          <li><%= link_to 'マイページ',root_path %></li>
+          <li><%= link_to 'お題一覧',themes_path %></li>
+          <li><%= link_to '回答一覧',answers_path %></li>
+          <li><%= link_to 'ランキング',users_path %></li>
+          <li><%= link_to 'マイページ',user_path(current_user) %></li>
           <li><%= link_to 'ログアウト',destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to 'ガイド',root_path %></li>
+          <li><%= link_to 'ガイド',homes_guide_path %></li>
         <% else %>
-          <li><%= link_to 'お題一覧',root_path %></li>
-          <li><%= link_to '回答一覧',root_path %></li>
+          <li><%= link_to 'お題一覧',themes_path %></li>
+          <li><%= link_to '回答一覧',answers_path %></li>
           <li><%= link_to 'ログイン',new_user_session_path %></li>
           <li><%= link_to '新規登録',new_user_registration_path %></li>
-          <li><%= link_to 'ガイド',root_path %></li>
+          <li><%= link_to 'ガイド',homes_guide_path %></li>
         <% end %>
       </ul>
     </header>
@@ -38,7 +38,11 @@
       <%= yield %>
     </main>
     <footer>
-
+      <ul>
+        <li><%= link_to 'お問い合わせ', new_contact_path %></li>
+        <!--管理者機能追加後遷移先変更-->
+        <li><%= link_to '管理者ログイン', root_path %></li>
+      </ul>
     </footer>
   </body>
 </html>
