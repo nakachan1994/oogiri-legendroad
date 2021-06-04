@@ -1,2 +1,17 @@
-<h1>Answers#index</h1>
-<p>Find me in app/views/answers/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @answers.each do |answer| %>
+    <div>
+      <%= link_to user_path(answer.theme.user.id) do %>
+        <%= answer.theme.user.name %>
+      <% end %>
+      <%= attachment_image_tag answer.theme, :image %>
+      <%= answer.theme.content %>
+      <%= answer.content %>
+      <%= link_to user_path(answer.user_id) do %>
+        <%= answer.user.name %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

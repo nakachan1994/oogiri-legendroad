@@ -20,7 +20,7 @@
           採用済
         <% end %>
         <%= theme.updated_at.to_s(:datetime_jp) %>
-        <%= link_to '削除', theme_path(theme.id), method: :delete %>
+        <%= link_to '削除', theme_path(theme.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
       <% end %>
     <% else %>
       まだ提案したお題はありません

@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def index
-    @answers = Answer.all
+    @answers = Answer.all.order(updated_at: :desc)
   end
 
   def create
@@ -15,7 +15,8 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-
+    Answer.find_by(id: params[:id], theme_id: params[:theme_id]).destroy
+    redirect_to theme_path(params[:theme_id]), flash: {alert: '投稿を削除しました'}
   end
 
   private
