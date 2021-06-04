@@ -23,6 +23,13 @@
     <% if @theme.answers.present? %>
       <% @theme.answers.each do |answer| %>
         <%= answer.content %>
+        <% if answer.liked_by?(current_user) %>
+          ♥<%= answer.likes.count %>いいね
+        <% else %>
+          <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
+            ♡<%= answer.likes.count %>いいね
+          <% end %>
+        <% end %>
         <%= link_to user_path(answer.user_id) do %>
           <%= answer.user.name %>
         <% end %>
