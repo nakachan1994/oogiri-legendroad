@@ -21,7 +21,7 @@
           <li><%= link_to '回答一覧',answers_path %></li>
           <li><%= link_to 'ランキング',users_path %></li>
           <li><%= link_to 'マイページ',user_path(current_user) %></li>
-          <li><%= link_to 'ログアウト',destroy_user_session_path, method: :delete %></li>
+          <li><%= link_to 'ログアウト',destroy_user_session_path, method: :delete, data: {confirm: "本当にログアウトしますか？"} %></li>
           <li><%= link_to 'ガイド',homes_guide_path %></li>
         <% else %>
           <li><%= link_to 'お題一覧',themes_path %></li>
