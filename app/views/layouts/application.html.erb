@@ -41,7 +41,9 @@
       <ul>
         <li><%= link_to 'お問い合わせ', new_contact_path %></li>
         <!--管理者機能追加後遷移先変更-->
-        <li><%= link_to '管理者ログイン', root_path %></li>
+        <% if current_user.status == true %>
+          <li><%= link_to '管理者ログイン', root_path %></li>
+        <% end %>
       </ul>
     </footer>
   </body>

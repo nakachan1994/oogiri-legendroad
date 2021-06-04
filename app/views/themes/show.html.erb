@@ -11,15 +11,23 @@
       <% if current_user.id == @theme.user_id %>
         <%= link_to '削除', theme_path(@theme), method: :delete %>
       <% end %>
-      <!--回答一覧-->
-      <% if @theme.answers.present? %>
-        <% @theme.answers.each do |answer| %>
-          <%= answer.content %>
-          <%= answer.user.name %>
-        <% end %>
-      <% else %>
-        まだ回答がありません
+    </div>
+    <div>
+      <%= form_with(model:[@theme,@answer], local: true) do |f| %>
+        <%= f.text_area :content,rows:'5', placeholder:"ひらめいたらここに投稿してみよう" %>
+        <%= f.submit "投稿" %>
       <% end %>
+    </div>
+    <div>
+      <!--回答一覧-->
+    <% if @theme.answers.present? %>
+      <% @theme.answers.each do |answer| %>
+        <%= answer.content %>
+        <%= answer.user.name %>
+      <% end %>
+    <% else %>
+      まだ回答がありません
+    <% end %>
     </div>
   </div>
 </div>

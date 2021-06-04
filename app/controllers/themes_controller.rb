@@ -8,8 +8,7 @@ class ThemesController < ApplicationController
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
     if @theme.save
-      flash[:notice] = 'お題を提案しました'
-      redirect_back(fallback_location: new_theme_path)
+      redirect_to new_theme_path, notice: 'お題を提案しました'
     else
       @themes = current_user.themes
       render :new
@@ -22,12 +21,13 @@ class ThemesController < ApplicationController
 
   def show
     @theme = Theme.find(params[:id])
+    @answer = Answer.new
   end
 
   def destroy
     @theme = Theme.find(params[:id])
     @theme.destroy
-    redirect_to new_theme_path
+    redirect_to new_theme_path, flash: {alert: 'お題を削除しました'}
   end
 
   private
