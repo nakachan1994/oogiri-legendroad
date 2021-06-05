@@ -19,7 +19,7 @@
     <div>
       <%= form_with(model:[@theme,@answer], local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
-        <%= f.text_area :content,rows:'5', placeholder:"ひらめいたらここに投稿してみよう", class:'form-control' %>
+        <%= f.text_area :content, placeholder:"ひらめいたらここに投稿してみよう", autofocus: true, class:'form-control' %>
         <%= f.submit "投稿" %>
       <% end %>
     </div>

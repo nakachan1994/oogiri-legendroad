@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
     <%= form_with model: @theme, local:true do |f| %>
-      <%= f.label :image, 'お題画像' %>
-      <%= f.attachment_field :image %>
-      <%= f.label :content, 'お題' %>
-      <%= f.text_area :content %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group">
+        <%= f.label :image, 'お題画像' %><br>
+        <%= f.attachment_field :image %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content, 'お題' %>
+        <%= f.text_area :content, autofocus: true, class:'form-control' %>
+      </div>
       <%= f.submit '提案' %>
     <% end %>
   </div>
@@ -12,16 +17,18 @@
     <% if @themes.present? %>
       一覧
       <% @themes.each do |theme| %>
-        <%= attachment_image_tag theme, :image, size: '300x150' %>
-        <%= theme.content %>
-        <% if theme.status == false %>
-          提案中
-        <% else %>
-          採用済
-        <% end %>
-        <%= theme.updated_at.to_s(:datetime_jp) %>
-        <%= link_to '削除', theme_path(theme.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-      <% end %>
+        <div>
+          <%= attachment_image_tag theme, :image, size: '300x150' %>
+            <%= theme.content %>
+            <% if theme.status == false %>
+              提案中
+            <% else %>
+              採用済
+            <% end %>
+            <%= theme.updated_at.to_s(:datetime_jp) %>
+            <%= link_to '削除', theme_path(theme.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+          <% end %>
+        </div>
     <% else %>
       まだ提案したお題はありません
     <% end %>
