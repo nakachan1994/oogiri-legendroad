@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -41,9 +42,8 @@
       <ul>
         <li><%= link_to 'お問い合わせ', new_contact_path %></li>
         <% if user_signed_in? %>
-          <!--管理者機能追加後遷移先変更-->
-          <% if current_user.status == true %>
-            <li><%= link_to '管理者ログイン', root_path %></li>
+          <% if current_user.try(:admin?) %>
+            <li><%= link_to '管理者ログイン', rails_admin_path %></li>
           <% end %>
         <% end %>
       </ul>

@@ -17,6 +17,7 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+// エラーメッセージが出た時にformのレイアウト崩れ防止、強調
 .field_with_errors {
   display: contents;
   .form-control {
