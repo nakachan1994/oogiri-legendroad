@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :answers, only: [:index]
   resources :likes, only: [:index]
-  resources :contacts, omly: [:new, :create] do
+  resources :contacts, only: [:new, :create] do
     collection do
       post :confirm
       get :complete

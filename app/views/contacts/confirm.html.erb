@@ -1,2 +1,16 @@
-<h1>Contacts#confirm</h1>
-<p>Find me in app/views/contacts/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= form_with model: @contact, local: true, url: {action: 'create'}, method: :post do |f| %>
+      <%= f.label :name, 'お名前' %>
+      <%= @contact.name %>
+      <%= f.hidden_field :name, :value => @contact.name %>
+      <%= f.label :email, 'メールアドレス' %>
+      <%= @contact.email %>
+      <%= f.hidden_field :email, :value => @contact.email %>
+      <%= f.label :content, 'お問い合わせ内容' %>
+      <%= @contact.content %>
+      <%= f.hidden_field :content, :value => @contact.content %>
+      <%= f.submit '確定する' %>
+    <% end %>
+  </div>
+</div>
