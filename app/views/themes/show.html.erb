@@ -8,34 +8,44 @@
       <%= @theme.content %>
       <%= @theme.answers.count %>回答数
       <%= @theme.updated_at.to_s(:datetime_jp) %>
-      <% if current_user.id == @theme.user_id %>
-        <%= link_to '削除', theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+      <% if user_signed_in? %>
+        <% if current_user.id == @theme.user_id %>
+          <%= link_to '削除', theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+        <% end %>
       <% end %>
     </div>
+  </div>
+  <div class="row">
     <div>
       <%= form_with(model:[@theme,@answer], local: true) do |f| %>
         <%= f.text_area :content,rows:'5', placeholder:"ひらめいたらここに投稿してみよう" %>
         <%= f.submit "投稿" %>
       <% end %>
     </div>
+  </div>
+  <div class="row">
     <div>
       <!--回答一覧-->
     <% if @theme.answers.present? %>
       <% @theme.answers.each do |answer| %>
-        <%= answer.content %>
-        <% if answer.liked_by?(current_user) %>
-          ♥<%= answer.likes.count %>いいね
-        <% else %>
-          <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
-            ♡<%= answer.likes.count %>いいね
+        <div>
+          <%= answer.content %>
+          <% if user_signed_in? %>
+            <% if answer.liked_by?(current_user) %>
+              ♥<%= answer.likes.count %>いいね
+            <% else %>
+              <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
+                ♡<%= answer.likes.count %>いいね
+              <% end %>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= link_to user_path(answer.user_id) do %>
-          <%= answer.user.name %>
-        <% end %>
-        <% if answer.user == current_user %>
-          <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-        <% end %>
+          <%= link_to user_path(answer.user_id) do %>
+            <%= answer.user.name %>
+          <% end %>
+          <% if answer.user == current_user %>
+            <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+          <% end %>
+        </div>
       <% end %>
     <% else %>
       まだ回答がありません
