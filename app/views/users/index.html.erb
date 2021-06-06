@@ -21,8 +21,8 @@
                   <%= user.name %>
                 <% end %>
               </td>
-              <td>称号</td>
-              <td>獲得経験値</td>
+              <td>【<%= User.total_exp_title(User.total_exp(user)) %>】</td>
+              <td><%= User.total_exp(user) %></td>
             </tr>
           <% end %>
         </tbody>

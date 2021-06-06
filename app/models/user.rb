@@ -13,6 +13,12 @@ class User < ApplicationRecord
 
  attachment :profile_image
 
+# userの経験値計算
+def self.total_exp(user)
+  answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
+  theme_count = Theme.where(user_id: user.id, status: true).count * 10
+  total_exp = answer_like_count + theme_count
+end
 # 称号の条件式
   def self.total_exp_title(total_exp)
     if total_exp < 10

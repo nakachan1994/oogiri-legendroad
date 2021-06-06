@@ -2,15 +2,15 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @users = User.all
+    @users = User.joins(:answers).where(answers: {created_at: Time.now.all_month}).group(:id).order('count(answers.user_id) desc')
   end
 
   def show
     @user = User.find(params[:id])
     @answers = @user.answers
-    @answer_like_count = Like.where(answer_id: Answer.where(user_id: @user.id).pluck(:id)).count * 10
-    @theme_count = Theme.where(user_id: @user.id, status: true).count * 10
-    @total_exp = @answer_like_count + @theme_count
+    # userモデルの経験値計算
+    @total_exp = User.total_exp(@user)
+    # userモデルの称号の条件式呼び出し
     @total_exp_title = User.total_exp_title(@total_exp)
   end
 
