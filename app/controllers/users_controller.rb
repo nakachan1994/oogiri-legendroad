@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @answer_like_count = Like.where(answer_id: Answer.where(user_id: @user.id).pluck(:id)).count * 10
     @theme_count = Theme.where(user_id: @user.id, status: true).count * 10
     @total_exp = @answer_like_count + @theme_count
+    @total_exp_title = User.total_exp_title(@total_exp)
   end
 
   def edit

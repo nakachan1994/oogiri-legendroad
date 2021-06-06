@@ -12,4 +12,14 @@ class User < ApplicationRecord
  validates :email, presence: true, uniqueness: true
 
  attachment :profile_image
+
+# 称号の条件式
+  def self.total_exp_title(total_exp)
+    if total_exp < 10
+      value = "ヒヨッコ"
+    elsif total_exp < 100
+      value = "新人"
+    end
+    value
+  end
 end
