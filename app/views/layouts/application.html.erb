@@ -12,42 +12,77 @@
 
   <body>
     <header>
-      <a href="/">ロゴ</a>
-      <% if user_signed_in? %>
-        <a><%= current_user.name %></a>
-      <% end %>
-      <ul>
-        <% if user_signed_in? %>
-          <li><%= link_to 'お題一覧',themes_path %></li>
-          <li><%= link_to '回答一覧',answers_path %></li>
-          <li><%= link_to 'ランキング',users_path %></li>
-          <li><%= link_to 'マイページ',user_path(current_user) %></li>
-          <li><%= link_to 'ログアウト',destroy_user_session_path, method: :delete, data: {confirm: "本当にログアウトしますか？"} %></li>
-          <li><%= link_to 'ガイド',homes_guide_path %></li>
-        <% else %>
-          <li><%= link_to 'お題一覧',themes_path %></li>
-          <li><%= link_to '回答一覧',answers_path %></li>
-          <li><%= link_to 'ランキング',users_path %></li>
-          <li><%= link_to 'ログイン',new_user_session_path %></li>
-          <li><%= link_to '新規登録',new_user_registration_path %></li>
-          <li><%= link_to 'ガイド',homes_guide_path %></li>
-        <% end %>
-      </ul>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">ロゴ</a>
+        <div class="navbar-brand">
+          <% if user_signed_in? %>
+            ようこそ<%= link_to current_user.name, user_path(current_user), class:'navbar-brand text-dark' %>さん
+          <% end %>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'お題一覧',themes_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '回答一覧',answers_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ランキング',users_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'マイページ',user_path(current_user), class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, data: {confirm: "本当にログアウトしますか？"}, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ガイド',homes_guide_path, class: 'nav-link text-dark' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'お題一覧',themes_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '回答一覧',answers_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ランキング',users_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログイン',new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '新規登録',new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ガイド',homes_guide_path, class: 'nav-link text-dark' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
     <main>
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
-    <footer>
-      <ul>
-        <li><%= link_to 'お問い合わせ', new_contact_path %></li>
+    <footer class="bg-light">
+      <div class="mx-auto text-center">
+        <%= link_to 'お問い合わせ', new_contact_path, class:'text-dark' %>
         <% if user_signed_in? %>
           <% if current_user.try(:admin?) %>
-            <li><%= link_to '管理者ログイン', rails_admin_path %></li>
+            <%= link_to '管理者ログイン', rails_admin_path, class:'text-dark' %>
           <% end %>
         <% end %>
-      </ul>
+        <p>Copyright © 大喜利レジェンドロード All rights reserved.</p>
+      </div>
     </footer>
   </body>
 </html>
