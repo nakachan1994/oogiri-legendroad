@@ -8,6 +8,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @answers = @user.answers
+    @answer_like_count = Like.where(answer_id: Answer.where(user_id: @user.id).pluck(:id)).count * 10
+    @theme_count = Theme.where(user_id: @user.id, status: true).count * 10
+    @total_exp = @answer_like_count + @theme_count
   end
 
   def edit

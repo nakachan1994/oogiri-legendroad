@@ -21,7 +21,7 @@
         <tr>
           <th>経験値</th>
           <td>
-            回答のいいね数＋お題のTRUEの数
+            <%= @total_exp%>
           </td>
         </tr>
         <tr>
@@ -46,7 +46,7 @@
   </div>
   <div class="row">
     <% @answers.each do |answer| %>
-    <div>
+    <div class="col-12 mx-auto">
       <%= link_to user_path(answer.theme.user.id) do %>
         <%= answer.theme.user.name %>
       <% end %>
