@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @answers = @user.answers
+    @answers = @user.answers.order(created_at: :desc)
     @answer_like_count = User.answer_like_count(@user)
     @theme_count = Theme.where(user_id: @user.id, status: true).count
     # userモデルの経験値計算

@@ -15,7 +15,7 @@
         </div>
         <div class="card-body d-flex justify-content-around">
           <div>回答数:<%= @theme.answers.count %></div>
-          <%= @theme.updated_at.to_s(:datetime_jp) %>
+          投稿日時:<%= @theme.updated_at.to_s(:datetime_jp) %>
           <% if user_signed_in? %>
             <% if current_user.id == @theme.user_id %>
               <%= link_to '削除', theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
