@@ -1,22 +1,32 @@
 <div class="container">
+  お題詳細
   <div class="row">
-    <div>
-      <%= link_to user_path(@theme.user_id) do %>
-        <%= @theme.user.name %>【<%= @total_exp_title %>】
-      <% end %>
-      <%= attachment_image_tag @theme, :image, size: '300x150' %>
-      <%= @theme.content %>
-      <%= @theme.answers.count %>回答数
-      <%= @theme.updated_at.to_s(:datetime_jp) %>
-      <% if user_signed_in? %>
-        <% if current_user.id == @theme.user_id %>
-          <%= link_to '削除', theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-        <% end %>
-      <% end %>
+    <div class="col-sm-10">
+      <div class="card mb-3">
+        <div class="card-title">
+          お題投稿者:
+          <%= link_to user_path(@theme.user_id) do %>
+            <%= @theme.user.name %>【<%= @total_exp_title %>】
+          <% end %>
+        </div>
+        <div class="card-body border-bottom text-center">
+          <%= attachment_image_tag @theme, :image, size: '300x150' %>
+          <h4><%= @theme.content %></h4>
+        </div>
+        <div class="card-body d-flex justify-content-around">
+          <div>回答数:<%= @theme.answers.count %></div>
+          <%= @theme.updated_at.to_s(:datetime_jp) %>
+          <% if user_signed_in? %>
+            <% if current_user.id == @theme.user_id %>
+              <%= link_to '削除', theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div>
+    <div class="col-sm-10">
       <%= form_with(model:[@theme,@answer], local: true) do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
         <%= f.text_area :content, placeholder:"ひらめいたらここに投稿してみよう", autofocus: true, class:'form-control' %>
@@ -25,32 +35,40 @@
     </div>
   </div>
   <div class="row">
-    <div>
+    <div class="col-sm-10">
       <!--回答一覧-->
-    <% if @theme.answers.present? %>
-      <% @theme.answers.each do |answer| %>
-        <div>
-          <%= answer.content %>
-          <% if user_signed_in? %>
-            <% if answer.liked_by?(current_user) %>
-              ♥<%= answer.likes.count %>いいね
-            <% else %>
-              <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
-                ♡<%= answer.likes.count %>いいね
+      <% if @theme.answers.present? %>
+        <% @answers.each.with_index(1) do |answer, i| %>
+          <div class="card mb-3">
+            <div class="card-title">
+              第<%= i %>位
+            </div>
+            <div class="card-body text-center">
+              <h4><%= answer.content %></h4>
+            </div>
+            <div class="card-body text-right">
+              回答者:
+              <%= link_to user_path(answer.user_id) do %>
+                <%= answer.user.name %>【<%= User.total_exp_title(User.total_exp(answer.user)) %>】
               <% end %>
-            <% end %>
-          <% end %>
-          <%= link_to user_path(answer.user_id) do %>
-            <%= answer.user.name %>【<%= User.total_exp_title(User.total_exp(answer.user)) %>】
-          <% end %>
-          <% if answer.user == current_user %>
-            <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-          <% end %>
-        </div>
+              <% if user_signed_in? %>
+                <% if answer.liked_by?(current_user) %>
+                  ♥<%= answer.likes.count %>いいね
+                <% else %>
+                  <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
+                    ♡<%= answer.likes.count %>いいね
+                  <% end %>
+                <% end %>
+              <% end %>
+              <% if answer.user == current_user %>
+                <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        まだ回答がありません
       <% end %>
-    <% else %>
-      まだ回答がありません
-    <% end %>
     </div>
   </div>
 </div>

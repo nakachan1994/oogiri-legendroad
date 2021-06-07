@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @users = User.joins(:answers).where(answers: {created_at: Time.now.all_month}).group(:id).order('count(answers.user_id) desc')
+    # @users = User.joins(:answers).where(answers: {created_at: Time.now.all_month}).group(:id).order('count(answers.user_id) desc')
+    @users = User.all.sort {|a,b| b.likes.count <=> a.likes.count} 
   end
 
   def show

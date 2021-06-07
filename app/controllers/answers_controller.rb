@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @answers = Answer.all.order(updated_at: :desc)
+    @answers = Answer.all.order(created_at: :desc)
   end
 
   def create

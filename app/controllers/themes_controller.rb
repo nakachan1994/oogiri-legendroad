@@ -18,11 +18,12 @@ class ThemesController < ApplicationController
   end
 
   def index
-    @themes = Theme.all.order(created_at: :desc)
+    @themes = Theme.all.order(updated_at: :desc)
   end
 
   def show
     @theme = Theme.find(params[:id])
+    @answers = Answer.where(theme_id: @theme.id).sort{|a,b| b.likes.count <=> a.likes.count}
     @answer = Answer.new
     @total_exp_title = User.total_exp_title(User.total_exp(@theme.user))
   end
