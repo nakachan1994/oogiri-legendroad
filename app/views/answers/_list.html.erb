@@ -7,11 +7,14 @@
       <% end %>
     </div>
     <%= link_to theme_path(answer.theme) do %>
-      <div class="card-body border-bottom text-center">
+      <div class="card-body text-center">
         <%= attachment_image_tag answer.theme, :image, class:'card-img-top w-75' %>
         <h4><%= answer.theme.content %></h4>
       </div>
     <% end %>
+    <div class="card-body text-left border-bottom">
+      回答数:<%= answer.theme.answers.count %>
+    </div>
     <div class="card-body text-center">
       <h4><%= answer.content %></h4>
     </div>

@@ -3,7 +3,7 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new
-    @themes = current_user.themes
+    @themes = current_user.themes.order(created_at: :desc)
   end
 
   def create

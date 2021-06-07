@@ -1,25 +1,39 @@
 <div class="container">
+  Amazings
   <div class="row">
-    Amazings
-    <% @likes.each do |like| %>
-      <div>
-        <%= link_to user_path(like.answer.theme.user.id) do %>
-          <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
-        <% end %>
-        <%= attachment_image_tag like.answer.theme, :image %>
-        <%= like.answer.theme.content %>
-        <%= like.answer.content %>
-        <%= link_to user_path(like.answer.user_id) do %>
-          <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
-        <% end %>
-        <% if like.answer.liked_by?(current_user) %>
-          ♥<%= like.answer.likes.count %>いいね
-        <% else %>
-          <%= link_to theme_answer_likes_path(like.answer.theme,like.answer), method: :post do %>
-            ♡<%= like.answer.likes.count %>いいね
+    <div class="col-sm-10 mx-auto">
+      <% @likes.each do |like| %>
+        <div class="card mb-3">
+          <div class="card-title">
+            お題投稿者:
+            <%= link_to user_path(like.answer.theme.user.id) do %>
+              <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
+            <% end %>
+          </div>
+          <%= link_to theme_path(like.answer.theme) do %>
+            <div class="card-body border-bottom text-center">
+              <%= attachment_image_tag like.answer.theme, :image, class:'card-img-top w-75' %>
+            <h4><%= like.answer.theme.content %></h4>
+            </div>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+          <div class="card-body text-center">
+            <h4><%= like.answer.content %></h4>
+          </div>
+          <div class="card-body text-right">
+            回答者:
+            <%= link_to user_path(like.answer.user_id) do %>
+              <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
+            <% end %>
+            <% if like.answer.liked_by?(current_user) %>
+              ♥<%= like.answer.likes.count %>いいね
+            <% else %>
+              <%= link_to theme_answer_likes_path(like.answer.theme,like.answer), method: :post do %>
+                ♡<%= like.answer.likes.count %>いいね
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
