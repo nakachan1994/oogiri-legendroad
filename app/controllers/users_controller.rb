@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 
   def index
     # @users = User.joins(:answers).where(answers: {created_at: Time.now.all_month}).group(:id).order('count(answers.user_id) desc')
-    @users = User.all.sort {|a,b| b.likes.count <=> a.likes.count} 
+    # @users = User.joins(:answers).where(answers: {created_at: Time.now.all_month}).group(:id).sort {|a,b| b.answers.count <=> a.answers.count}
+    @users = User.all.sort{|a,b| b.likes.count <=> a.likes.count}
   end
 
   def show
