@@ -4,13 +4,13 @@
     <% @likes.each do |like| %>
       <div>
         <%= link_to user_path(like.answer.theme.user.id) do %>
-          <%= like.answer.theme.user.name %>
+          <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
         <% end %>
         <%= attachment_image_tag like.answer.theme, :image %>
         <%= like.answer.theme.content %>
         <%= like.answer.content %>
         <%= link_to user_path(like.answer.user_id) do %>
-          <%= like.answer.user.name %>
+          <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
         <% end %>
         <% if like.answer.liked_by?(current_user) %>
           ♥<%= like.answer.likes.count %>いいね

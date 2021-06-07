@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    ランキング
+    獲得Amazings数ランキング
     <div>
       <table class="table">
         <thead>
@@ -9,6 +9,8 @@
             <th>ユーザー</th>
             <th>称号</th>
             <th>経験値</th>
+            <th>回答数</th>
+            <th>Amaizings数</th>
           </tr>
         </thead>
         <tbody>
@@ -23,6 +25,8 @@
               </td>
               <td>【<%= User.total_exp_title(User.total_exp(user)) %>】</td>
               <td><%= User.total_exp(user) %></td>
+              <td><%= user.answers.count %></td>
+              <td><%= User.answer_like_count(user) %></td>
             </tr>
           <% end %>
         </tbody>

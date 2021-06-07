@@ -2,7 +2,7 @@
   <div class="row">
     <div>
       <%= link_to user_path(@theme.user_id) do %>
-        <%= @theme.user.name %>
+        <%= @theme.user.name %>【<%= @total_exp_title %>】
       <% end %>
       <%= attachment_image_tag @theme, :image, size: '300x150' %>
       <%= @theme.content %>
@@ -41,7 +41,7 @@
             <% end %>
           <% end %>
           <%= link_to user_path(answer.user_id) do %>
-            <%= answer.user.name %>
+            <%= answer.user.name %>【<%= User.total_exp_title(User.total_exp(answer.user)) %>】
           <% end %>
           <% if answer.user == current_user %>
             <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>

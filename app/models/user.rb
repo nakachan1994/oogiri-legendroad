@@ -13,6 +13,10 @@ class User < ApplicationRecord
 
  attachment :profile_image
 
+# userのanswerに対するいいね数
+def self.answer_like_count(user)
+  answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+end
 # userの経験値計算
 def self.total_exp(user)
   answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
@@ -21,11 +25,26 @@ def self.total_exp(user)
 end
 # 称号の条件式
   def self.total_exp_title(total_exp)
-    if total_exp < 10
+    if total_exp >= 100000
+      value = "レジェンド"
+    elsif total_exp >= 5000
+      value = "マスター"
+    elsif total_exp >= 2500
+      value = "キング"
+    elsif total_exp >= 1200
+      value = "四天王"
+    elsif total_exp >= 500
+      value = "賢者"
+    elsif total_exp >= 250
+      value = "名人"
+    elsif total_exp >= 180
+      value = "天狗"
+    elsif total_exp >= 100
+      value = "一人前"
+    elsif total_exp >= 30
+      value = "駆け出し"
+    elsif total_exp >= 0
       value = "ヒヨッコ"
-    elsif total_exp < 100
-      value = "新人"
     end
-    value
   end
 end

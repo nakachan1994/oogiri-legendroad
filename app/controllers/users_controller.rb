@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @answers = @user.answers
+    @answer_like_count = User.answer_like_count(@user)
+    @theme_count = Theme.where(user_id: @user.id, status: true).count
     # userモデルの経験値計算
     @total_exp = User.total_exp(@user)
     # userモデルの称号の条件式呼び出し

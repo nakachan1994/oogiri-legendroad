@@ -4,7 +4,7 @@
     <% @themes.each do |theme| %>
       <div>
         <%= link_to user_path(theme.user_id) do %>
-          <%= theme.user.name %>
+          <%= theme.user.name %>【<%= User.total_exp_title(User.total_exp(theme.user)) %>】
         <% end %>
         <%= attachment_image_tag theme, :image, size: '300x150' %>
         <%= theme.content %>

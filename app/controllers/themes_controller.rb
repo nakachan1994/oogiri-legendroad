@@ -24,6 +24,7 @@ class ThemesController < ApplicationController
   def show
     @theme = Theme.find(params[:id])
     @answer = Answer.new
+    @total_exp_title = User.total_exp_title(User.total_exp(@theme.user))
   end
 
   def destroy
