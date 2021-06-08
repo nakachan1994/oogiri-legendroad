@@ -18,7 +18,8 @@ class AnswersController < ApplicationController
 
   def destroy
     Answer.find_by(id: params[:id], theme_id: params[:theme_id]).destroy
-    redirect_to theme_path(params[:theme_id]), flash: {alert: '投稿を削除しました'}
+    flash[:alert] = '投稿を削除しました'
+    redirect_back(fallback_location: root_path)
   end
 
   private

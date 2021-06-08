@@ -9,6 +9,6 @@ class LikesController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     @likes = current_user.likes.new(answer_id: @answer.id)
     @likes.save
-    redirect_to theme_path(@answer.theme)
+    redirect_back(fallback_location: root_path)
   end
 end
