@@ -2,7 +2,6 @@ class LikesController < ApplicationController
 
   def index
     @likes = current_user.likes.order(created_at: :desc)
-
   end
 
   def create

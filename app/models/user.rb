@@ -13,6 +13,11 @@ class User < ApplicationRecord
 
  attachment :profile_image
 
+# 退会済みuserか確認
+def active_for_authentication?
+  super && (self.status == true)
+end
+
 # userのanswerに対するいいね数
 def self.answer_like_count(user)
   answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
