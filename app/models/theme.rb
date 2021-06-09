@@ -6,7 +6,7 @@ class Theme < ApplicationRecord
 
   validates :content, length: {maximum: 100}
   validate :required_either_image_or_content
-  
+
   # themeのstatusの判定
   def self.theme_status?
     where(status: true)
