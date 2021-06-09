@@ -28,15 +28,14 @@
             <div class="card-body d-flex justify-content-around">
               <% if theme.status == false %>
                 <p class="text-secondary">提案中</p>
+                <%= theme.created_at.to_s(:datetime_jp) %>
+                <%= link_to '削除', theme_path(theme.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
               <% else %>
                 <p class="text-success">採用済</p>
-              <% end %>
-              <%= theme.created_at.to_s(:datetime_jp) %>
-              <%= link_to theme_path(theme) do %>
-                回答数:<%= theme.answers.count %>
-              <% end %>
-              <% if theme.status == false %>
-                <%= link_to '削除', theme_path(theme.id), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+                <%= theme.created_at.to_s(:datetime_jp) %>
+                <%= link_to theme_path(theme) do %>
+                  回答数:<%= theme.answers.answer_status?.count %>
+                <% end %>
               <% end %>
             </div>
           </div>

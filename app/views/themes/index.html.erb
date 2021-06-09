@@ -21,7 +21,7 @@
           </div>
           <div class="card-body d-flex justify-content-around">
             <%= link_to theme_path(theme.id) do %>
-              回答数:<%= theme.answers.count %>
+              回答数:<%= theme.answers.answer_status?.count %>
             <% end %>
             投稿日時:<%= theme.updated_at.to_s(:datetime_jp) %>
           </div>

@@ -14,7 +14,7 @@
           <h4><%= @theme.content %></h4>
         </div>
         <div class="card-body d-flex justify-content-around">
-          <div>回答数:<%= @theme.answers.count %></div>
+          <div>回答数:<%= @theme.answers.answer_status?.count %></div>
           投稿日時:<%= @theme.updated_at.to_s(:datetime_jp) %>
           <% if user_signed_in? %>
             <% if current_user.id == @theme.user_id && @theme.answers.count == 0 %>

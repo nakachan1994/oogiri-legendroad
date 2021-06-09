@@ -25,7 +25,7 @@
               </td>
               <td>【<%= User.total_exp_title(User.total_exp(user)) %>】</td>
               <td><%= User.total_exp(user) %></td>
-              <td><%= user.answers.count %></td>
+              <td><%= user.answers.answer_status?.count %></td>
               <td><%= User.answer_like_count(user) %></td>
             </tr>
           <% end %>
