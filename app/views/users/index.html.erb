@@ -1,36 +1,11 @@
 <div class="container">
+  ランキング
   <div class="row">
-    獲得Amazings数ランキング
-    <div>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>順位</th>
-            <th>ユーザー</th>
-            <th>称号</th>
-            <th>経験値</th>
-            <th>回答数</th>
-            <th>Amaizings数</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each.with_index(1) do |user, i| %>
-            <tr>
-              <td><%= i %>位</td>
-              <td>
-                <%= link_to user_path(user) do %>
-                  <%= attachment_image_tag user, :profile_image, :fill, 30, 30, fallback: "no_image.png", size: '30x30' %>
-                  <%= user.name %>
-                <% end %>
-              </td>
-              <td>【<%= User.total_exp_title(User.total_exp(user)) %>】</td>
-              <td><%= User.total_exp(user) %></td>
-              <td><%= user.answers.answer_status?.count %></td>
-              <td><%= User.answer_like_count(user) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-md-10 mx-auto">
+      獲得経験値ランキング
+      <%= render 'users/rank', user_ranks: @total_exp_rank %>
+      獲得Amazings数ランキング
+      <%= render 'users/rank', user_ranks: @answer_likes_rank %>
     </div>
   </div>
 </div>
