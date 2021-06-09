@@ -12,7 +12,7 @@ class ThemesController < ApplicationController
     if @theme.save
       redirect_to new_theme_path, notice: 'お題を提案しました'
     else
-      @themes = current_user.themes
+      @themes = current_user.themes.order(created_at: :desc)
       render :new
     end
   end
