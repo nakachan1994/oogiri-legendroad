@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
     @answer.theme_id = @theme.id
     if @answer.save
+      # 非同期化のため@answersの値渡す
       @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
       render :theme_answers
     else
@@ -20,6 +21,7 @@ class AnswersController < ApplicationController
   def destroy
     Answer.find_by(id: params[:id], theme_id: params[:theme_id]).destroy
     flash[:alert] = '投稿を削除しました'
+    # 非同期化のため@theme,@answersの値渡す
     @theme = Theme.find(params[:theme_id])
     @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
     render :theme_answers
