@@ -27,49 +27,15 @@
   </div>
   <div class="row">
     <div class="col-sm-10">
-      <%= form_with(model:[@theme,@answer], local: true) do |f| %>
-      <%= render 'layouts/error_messages', model: f.object %>
-        <%= f.text_area :content, placeholder:"ひらめいたら投稿してみよう！", autofocus: true, class:'form-control' %>
-        <%= f.submit "投稿" %>
-      <% end %>
+      <%= render 'answers/form', theme: @theme, answer: @answer %>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-10">
-      <!--回答一覧-->
-      <% if @theme.answers.present? %>
-        <% @answers.each.with_index(1) do |answer, i| %>
-          <div class="card mb-3">
-            <div class="card-title">
-              第<%= i %>位
-            </div>
-            <div class="card-body text-center">
-              <h4><%= answer.content %></h4>
-            </div>
-            <div class="card-body text-right">
-              回答者:
-              <%= link_to user_path(answer.user_id) do %>
-                <%= answer.user.name %>【<%= User.total_exp_title(User.total_exp(answer.user)) %>】
-              <% end %>
-              <% if user_signed_in? %>
-                <% if answer.user == current_user %>
-                  ♡<%= answer.likes.count %>いいね
-                  <% if answer.likes.count == 0 %>
-                    <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
-                  <% end %>
-                <% else %>
-                  <!--いいね機能非同期-->
-                  <div class="likes_buttons_<%= answer.id %>">
-                    <%= render 'likes/like', answer: answer %>
-                  </div>
-                <% end %>
-             <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        まだ回答がありません
-      <% end %>
+      <!--回答一覧非同期-->
+      <div id="answers_area">
+        <%= render 'answers/theme_answers', theme: @theme, answers: @answers %>
+      </div>
     </div>
   </div>
 </div>

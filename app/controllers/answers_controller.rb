@@ -10,7 +10,8 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
     @answer.theme_id = @theme.id
     if @answer.save
-      redirect_to theme_path(@theme), notice: '投稿しました'
+      @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
+      render :theme_answers
     else
       render 'themes/show'
     end
@@ -19,7 +20,9 @@ class AnswersController < ApplicationController
   def destroy
     Answer.find_by(id: params[:id], theme_id: params[:theme_id]).destroy
     flash[:alert] = '投稿を削除しました'
-    redirect_back(fallback_location: root_path)
+    @theme = Theme.find(params[:theme_id])
+    @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
+    render :theme_answers
   end
 
   private

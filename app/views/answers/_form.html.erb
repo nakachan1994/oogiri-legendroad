@@ -1,0 +1,5 @@
+<%= form_with(model:[theme,answer]) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
+  <%= f.text_area :content, placeholder:"ひらめいたら投稿してみよう！", autofocus: true, class:'form-control' %>
+  <%= f.submit "投稿" %>
+<% end %>
