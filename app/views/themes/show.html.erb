@@ -58,13 +58,10 @@
                     <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, data: {confirm: "本当に削除しますか？"} %>
                   <% end %>
                 <% else %>
-                  <% if answer.liked_by?(current_user) %>
-                    ♥<%= answer.likes.count %>いいね
-                  <% else %>
-                    <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post do %>
-                      ♡<%= answer.likes.count %>いいね
-                    <% end %>
-                  <% end %>
+                  <!--いいね機能非同期-->
+                  <div class="likes_buttons_<%= answer.id %>">
+                    <%= render 'likes/like', answer: answer %>
+                  </div>
                 <% end %>
              <% end %>
             </div>

@@ -1,0 +1,7 @@
+<% if answer.liked_by?(current_user) %>
+  ♥<%= answer.likes.count %>いいね
+<% else %>
+  <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post, remote: true  do %>
+    ♡<%= answer.likes.count %>いいね
+  <% end %>
+<% end %>
