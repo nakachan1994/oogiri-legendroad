@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(answer_params)
     @answer.theme_id = @theme.id
     if @answer.save
+      flash[:notice] = '回答を投稿しました'
       # 非同期化のため@answersの値渡す
       @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
       render :theme_answers

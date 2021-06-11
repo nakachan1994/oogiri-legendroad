@@ -1,0 +1,28 @@
+一覧
+<% if themes.present? %>
+  <% themes.each do |theme| %>
+    <div class="card mb-3">
+      <%= link_to theme_path(theme) do %>
+        <div class="card-body border-bottom text-center">
+          <%= attachment_image_tag theme, :image, class:'card-img-top w-75' %>
+          <h4><%= theme.content %></h4>
+        </div>
+      <% end %>
+      <div class="card-body d-flex justify-content-around">
+        <% if theme.status == false %>
+          <p class="text-secondary">提案中</p>
+          <%= theme.created_at.to_s(:datetime_jp) %>
+          <%= link_to '削除', theme_path(theme.id), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
+        <% else %>
+          <p class="text-success">採用済</p>
+          <%= theme.created_at.to_s(:datetime_jp) %>
+          <%= link_to theme_path(theme) do %>
+            回答数:<%= theme.answers.answer_status?.count %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>まだ提案したお題はありません</p>
+<% end %>
