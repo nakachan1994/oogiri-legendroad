@@ -71,7 +71,6 @@ gem "pry-byebug"
 gem 'faker'
 gem 'rubocop-airbnb'
 gem 'font-awesome-sass', '~> 5.13'
-gem 'dotenv-rails'
 gem 'kaminari'
 gem 'whenever', require: false
 gem 'rspec-rails'
@@ -80,3 +79,7 @@ gem 'omniauth-google-oauth2'
 gem 'rails_admin'
 gem 'cancancan'
 gem 'rails-i18n'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

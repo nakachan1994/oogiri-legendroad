@@ -189,6 +189,7 @@ GEM
     multipart-post (2.1.1)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    mysql2 (0.5.3)
     nested_form (0.3.2)
     net-ftp (0.1.2)
       net-protocol
@@ -432,6 +433,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  mysql2
   omniauth-google-oauth2
   omniauth-twitter
   pry-byebug
