@@ -24,17 +24,7 @@
             <%= link_to user_path(like.answer.user_id) do %>
               <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
             <% end %>
-            <% if like.answer.user == current_user %>
-              ♡<%= like.answer.likes.count %>いいね
-            <% else %>
-              <% if like.answer.liked_by?(current_user) %>
-                ♥<%= like.answer.likes.count %>いいね
-              <% else %>
-                <%= link_to theme_answer_likes_path(like.answer.theme,like.answer), method: :post do %>
-                  ♡<%= like.answer.likes.count %>いいね
-                <% end %>
-              <% end %>
-            <% end %>
+            <i class="fas fa-thumbs-up"></i><%= like.answer.likes.count %>Amazing
           </div>
         </div>
       <% end %>

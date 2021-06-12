@@ -14,7 +14,7 @@
         <% end %>
         <% if user_signed_in? %>
           <% if answer.user == current_user %>
-            ♡<%= answer.likes.count %>いいね
+            <i class="far fa-thumbs-up"></i><%= answer.likes.count %>Amazing
             <% if answer.likes.count == 0 %>
               <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
             <% end %>
@@ -24,6 +24,8 @@
               <%= render 'likes/like', answer: answer %>
             </div>
           <% end %>
+        <% else %>
+          <i class="far fa-thumbs-up"></i><%= answer.likes.count %>Amazing
        <% end %>
       </div>
     </div>
