@@ -15,7 +15,7 @@ class ThemesController < ApplicationController
       render :post_themes
     else
       @themes = current_user.themes.order(created_at: :desc)
-      render :new
+      render :error
     end
   end
 
