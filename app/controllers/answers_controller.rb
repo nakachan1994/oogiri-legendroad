@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
       @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
       render :theme_answers
     else
-      render 'themes/show'
+      render :error
     end
   end
 
