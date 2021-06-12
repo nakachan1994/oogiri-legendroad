@@ -71,8 +71,9 @@
       </nav>
     </header>
     <main>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <div id="flash-message">
+        <%= render 'layouts/flash' %>
+      </div>
       <%= yield %>
     </main>
     <footer class="bg-light">

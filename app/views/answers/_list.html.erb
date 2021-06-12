@@ -11,10 +11,10 @@
         <%= attachment_image_tag answer.theme, :image, class:'card-img-top w-75' %>
         <h4><%= answer.theme.content %></h4>
       </div>
+      <div class="card-body text-left border-bottom">
+        回答数:<%= answer.theme.answers.answer_status?.count %>
+      </div>
     <% end %>
-    <div class="card-body text-left border-bottom">
-      回答数:<%= answer.theme.answers.answer_status?.count %>
-    </div>
     <div class="card-body text-center">
       <h4><%= answer.content %></h4>
     </div>

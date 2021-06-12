@@ -1,2 +1,3 @@
 $("#answers_area").html("<%= j(render 'answers/theme_answers', theme: @theme, answers: @answers) %>");
 $("textarea").val('');
+$('#flash-message').html("<%= j(render 'layouts/flash') %>");

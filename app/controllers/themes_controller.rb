@@ -10,7 +10,7 @@ class ThemesController < ApplicationController
     @theme = Theme.new(theme_params)
     @theme.user_id = current_user.id
     if @theme.save
-      flash[:notice] = 'お題を提案しました'
+      flash.now[:notice] = 'お題を提案しました'
       @themes = current_user.themes.order(created_at: :desc)
       render :post_themes
     else
@@ -34,7 +34,7 @@ class ThemesController < ApplicationController
   def destroy
     @theme = Theme.find(params[:id])
     @theme.destroy
-    flash[:notice] = 'お題を削除しました'
+    flash.now[:alert] = 'お題を削除しました'
     @themes = current_user.themes.order(created_at: :desc)
     render :post_themes
   end
