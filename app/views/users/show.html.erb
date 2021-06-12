@@ -49,9 +49,9 @@
           </tr>
         </table>
         <% if @user == current_user %>
-          <%= link_to '編集', edit_user_path(@user) %>
-          <%= link_to 'お題登録', new_theme_path %>
-          <%= link_to 'MyAmazings', likes_path %>
+          <%= link_to '編集', edit_user_path(@user), class:"fas fa-user-edit" %>
+          <%= link_to 'お題登録', new_theme_path, class:"fas fa-pencil-alt" %>
+          <%= link_to 'MyAmazings', likes_path, class:"fas fa-thumbs-up" %>
         <% end %>
       </div>
     </div>
