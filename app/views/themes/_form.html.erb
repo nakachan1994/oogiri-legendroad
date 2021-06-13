@@ -10,5 +10,7 @@
     <%= f.label :content, 'お題' %>
     <%= f.text_area :content, autofocus: true, placeholder:'みんなに回答してもらえるお題を提案してみよう！', class:'form-control' %>
   </div>
-  <%= f.submit '提案' %>
+  <div class="d-flex justify-content-center mb-5">
+    <%= f.submit '提案', class:'btn btn-primary' %>
+  </div>
 <% end %>

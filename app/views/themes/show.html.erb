@@ -10,22 +10,14 @@
             <%= attachment_image_tag @theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
             <%= @theme.user.name %>【<%= @total_exp_title %>】
           <% end %>
-
         </div>
         <div class="card-body border-bottom text-center">
           <%= attachment_image_tag @theme, :image, size: '300x150' %>
           <h4><%= @theme.content %></h4>
         </div>
-        <div class="card-body d-flex justify-content-around">
-          <div>回答数:<%= @theme.answers.answer_status?.count %></div>
-          投稿日時:<%= @theme.updated_at.to_s(:datetime_jp) %>
-          <% if user_signed_in? %>
-            <% if current_user.id == @theme.user_id && @theme.answers.count == 0 %>
-              <%= link_to theme_path(@theme), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
-                <i class="fas fa-trash-alt text-secondary ml-2 fa-lg"></i>
-              <% end %>
-            <% end %>
-          <% end %>
+        <!--回答数非同期に-->
+        <div id="theme_information">
+          <%= render 'themes/information', theme: @theme %>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@
               <%= theme.user.name %>【<%= User.total_exp_title(User.total_exp(theme.user)) %>】
             <% end %>
           </div>
-          <%= link_to theme_path(theme), class:'text-dark text-decoration-none ' do %>
+          <%= link_to theme_path(theme), class:'text-dark text-decoration-none' do %>
             <div class="card-body border-bottom text-center">
               <%= attachment_image_tag theme, :image, class:'card-img-top w-75' %>
               <h4><%= theme.content %></h4>

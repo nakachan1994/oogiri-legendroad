@@ -1,8 +1,10 @@
-一覧
+<h5 class="my-3 ml-3">
+  List of themes
+</h5>
 <% if themes.present? %>
   <% themes.each do |theme| %>
-    <div class="card mb-3">
-      <%= link_to theme_path(theme) do %>
+    <div class="card mb-4">
+      <%= link_to theme_path(theme), class:'text-dark text-decoration-none' do %>
         <div class="card-body border-bottom text-center">
           <%= attachment_image_tag theme, :image, class:'card-img-top w-75' %>
           <h4><%= theme.content %></h4>
@@ -12,11 +14,13 @@
         <% if theme.status == false %>
           <p class="text-secondary">提案中</p>
           <%= theme.created_at.to_s(:datetime_jp) %>
-          <%= link_to '削除', theme_path(theme.id), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} %>
+          <%= link_to theme_path(theme.id), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} do %>
+            <i class="fas fa-trash-alt text-secondary ml-2 fa-lg"></i>
+          <% end %>
         <% else %>
           <p class="text-success">採用済</p>
           <%= theme.created_at.to_s(:datetime_jp) %>
-          <%= link_to theme_path(theme) do %>
+          <%= link_to theme_path(theme), class:'text-dark' do %>
             回答数:<%= theme.answers.answer_status?.count %>
           <% end %>
         <% end %>

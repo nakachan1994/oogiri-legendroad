@@ -1,0 +1,11 @@
+<div class="card-body d-flex justify-content-around">
+  <div>回答数:<%= theme.answers.answer_status?.count %></div>
+  投稿日時:<%= theme.updated_at.to_s(:datetime_jp) %>
+  <% if user_signed_in? %>
+    <% if current_user.id == theme.user_id && theme.answers.count == 0 %>
+      <%= link_to theme_path(theme), method: :delete, data: {confirm: "本当に削除しますか？"} do %>
+        <i class="fas fa-trash-alt text-secondary ml-2 fa-lg"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
