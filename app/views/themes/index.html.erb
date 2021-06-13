@@ -11,7 +11,6 @@
               <%= attachment_image_tag theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
               <%= theme.user.name %>【<%= User.total_exp_title(User.total_exp(theme.user)) %>】
             <% end %>
-            <%= theme.updated_at.to_s(:datetime_jp) %>
           </div>
           <%= link_to theme_path(theme), class:'text-dark text-decoration-none ' do %>
             <div class="card-body border-bottom text-center">
@@ -22,10 +21,11 @@
           <div class="card-body text-center">
             <%= link_to '回答する', theme_path(theme.id), class:'btn btn-success btn-lg' %>
           </div>
-          <div class="card-body d-flex justify-content-start">
+          <div class="card-body d-flex justify-content-around">
             <%= link_to theme_path(theme.id), class:'text-dark' do %>
               回答数:<%= theme.answers.answer_status?.count %>
             <% end %>
+            投稿日時<%= theme.updated_at.to_s(:datetime_jp) %>
           </div>
         </div>
       <% end %>

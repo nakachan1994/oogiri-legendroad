@@ -3,5 +3,7 @@
   <%= render 'layouts/error_messages', model: f.object %>
 </div>
   <%= f.text_area :content, placeholder:"ひらめいたら投稿してみよう！", autofocus: true, class:'form-control' %>
-  <%= f.submit "投稿" %>
+  <div class="d-flex justify-content-center">
+    <%= f.submit "投稿する", class:'btn btn-success btn-lg ml-2 my-2' %>
+  </div>
 <% end %>

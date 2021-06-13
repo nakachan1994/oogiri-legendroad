@@ -1,7 +1,9 @@
 <% if answer.liked_by?(current_user) %>
-  <i class="fas fa-thumbs-up"></i><%= answer.likes.count %>Amazing
+  <div class="text-danger font-weight-bold">
+    <i class="fas fa-thumbs-up"></i><%= answer.likes.count %> Amazing
+  </div>
 <% else %>
-  <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post, remote: true  do %>
-    <i class="far fa-thumbs-up"></i><%= answer.likes.count %>Amazing
+  <%= link_to theme_answer_likes_path(answer.theme,answer), method: :post, remote: true, class:'text-dark'  do %>
+    <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
   <% end %>
 <% end %>
