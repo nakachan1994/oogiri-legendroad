@@ -17,7 +17,9 @@
             <div>
               <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
             <% if answer.likes.count == 0 %>
-              <%= link_to "削除", theme_answer_path(answer.theme, answer), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"}, class:'btn btn-danger' %>
+              <%= link_to theme_answer_path(answer.theme, answer), method: :delete, remote: true, data: {confirm: "本当に削除しますか？"} do %>
+                <i class="fas fa-trash-alt text-secondary ml-2 fa-lg"></i>
+              <% end %>
             <% end %>
             </div>
           <% else %>
