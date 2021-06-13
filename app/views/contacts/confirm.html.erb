@@ -2,30 +2,22 @@
   <div class="row">
     <div class="col-sm-10 mx-auto">
       <%= form_with model: @contact, local: true, url: {action: 'create'}, method: :post do |f| %>
-        <table class="table">
-          <tr>
-            <th><%= f.label :name, 'お名前' %></th>
-            <td>
-              <%= @contact.name %>
-              <%= f.hidden_field :name, :value => @contact.name %>
-            </td>
-          </tr>
-          <tr>
-            <th><%= f.label :email, 'メールアドレス' %></th>
-            <td>
-              <%= @contact.email %>
-              <%= f.hidden_field :email, :value => @contact.email %>
-            </td>
-          </tr>
-          <tr>
-            <th><%= f.label :content, 'お問い合わせ内容' %></th>
-            <td>
-              <%= @contact.content %>
-              <%= f.hidden_field :content, :value => @contact.content %>
-            </td>
-          </tr>
-        </table>
-        <%= f.submit '確定する' %>
+        <div class="form-group border-bottom">
+          <%= f.label :name, 'お名前' %><br>
+          <%= @contact.name %>
+          <%= f.hidden_field :name, :value => @contact.name %>
+        </div>
+        <div class="form-group border-bottom">
+          <%= f.label :email, 'メールアドレス' %><br>
+          <%= @contact.email %>
+          <%= f.hidden_field :email, :value => @contact.email %>
+        </div>
+        <div class="form-group border-bottom">
+          <%= f.label :content, 'お問い合わせ内容' %><br>
+          <%= @contact.content %>
+          <%= f.hidden_field :content, :value => @contact.content %>
+        </div>
+        <%= f.submit '送信する' %>
       <% end %>
     </div>
   </div>
