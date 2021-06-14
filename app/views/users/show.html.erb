@@ -1,48 +1,64 @@
 <div class="container">
   <% if @user == current_user %>
-    マイページ
+    <h2 class="my-3 ml-3">
+      My page
+    </h2>
   <% else %>
-    <%= @user.name %>さんのページ
+    <h2 class="my-3 ml-3">
+      <%= @user.name %> 's page
+    </h2>
   <% end %>
   <div class="row justify-content-center">
-    <div class="col-6 d-flex justify-content-center">
-      <div>
-        <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, fallback: "no_image.png", size: '150x150' %>
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="mb-5 mx-auto">
+        <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.png", size: '250x250', class:"rounded-circle" %>
       </div>
     </div>
-    <div class="col-6">
-      <div>
+    <div class="col-md-6">
+      <div class="text-center">
         <table class="table">
           <tr>
-            <th>name</th>
+            <th>
+              <i class="far fa-user"></i>name
+            </th>
             <td><%= @user.name %></td>
           </tr>
           <tr>
-            <th>称号</th>
+            <th>
+              <i class="fas fa-medal"></i>称号
+            </th>
             <td>
               【<%= @total_exp_title %>】
             </td>
           </tr>
           <tr>
-            <th>経験値</th>
+            <th>
+              <i class="fas fa-chart-line"></i>経験値
+            </th>
             <td>
               <%= @total_exp %>
             </td>
           </tr>
           <tr>
-            <th>回答数</th>
+            <th>
+              <i class="far fa-lightbulb"></i>回答数
+            </th>
             <td>
               <%= @user.answers.answer_status?.count %>
             </td>
           </tr>
           <tr>
-            <th>Amazings数</th>
+            <th>
+              <i class="far fa-thumbs-up"></i>Amazings数
+            </th>
             <td>
               <%= @answer_like_count %>
             </td>
           </tr>
           <tr>
-            <th>採用お題数</th>
+            <th>
+              <i class="fas fa-pencil-alt"></i>採用お題数
+            </th>
             <td>
               <%= @theme_count %>
             </td>

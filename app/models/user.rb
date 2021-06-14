@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: {maximum: 15}
+  validates :name, presence: true, uniqueness: true, length: {maximum: 12}
   validates :email, presence: true, uniqueness: true
 
   attachment :profile_image
