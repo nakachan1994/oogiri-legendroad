@@ -74,6 +74,7 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'kaminari'
 gem 'whenever', require: false
 gem 'rspec-rails'
+gem 'omniauth', '1.9.1'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'rails_admin'
