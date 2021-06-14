@@ -1,10 +1,16 @@
 <div class="container">
-  ランキング
+  <h2 class="my-3 ml-3">
+    Ranking
+  </h2>
   <div class="row">
     <div class="col-md-10 mx-auto">
-      獲得経験値ランキング
+      <h5 class="my-3 ml-3">
+        Experience ranking
+      </h5>
       <%= render 'users/rank', user_ranks: @total_exp_rank %>
-      獲得Amazings数ランキング
+      <h5 class="my-3 ml-3">
+        Amazing ranking
+      </h5>
       <%= render 'users/rank', user_ranks: @answer_likes_rank %>
     </div>
   </div>
