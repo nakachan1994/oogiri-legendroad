@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    # Twitter API認証用
+    :omniauth_callbacks => 'users/omniauth_callbacks'
   }
   root to:'homes#top'
   get 'homes/guide'

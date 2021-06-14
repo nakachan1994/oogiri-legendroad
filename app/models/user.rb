@@ -2,34 +2,38 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         # Twitter API認証用に追加
+         :omniauthable, omniauth_providers: [:twitter]
 
- has_many :themes, dependent: :destroy
- has_many :answers, dependent: :destroy
- has_many :likes, dependent: :destroy
+  has_many :themes, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
- validates :name, presence: true, uniqueness: true, length: {maximum: 15}
- validates :email, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: {maximum: 15}
+  validates :email, presence: true, uniqueness: true
 
- attachment :profile_image
+  attachment :profile_image
 
-# 退会済みuserか確認
-def active_for_authentication?
-  super && (self.status == true)
-end
+  # 退会済みuserか確認
+  def active_for_authentication?
+    super && (self.status == true)
+  end
 
-# userのanswerに対するいいね数
-def self.answer_like_count(user)
-  answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
-end
-# userの経験値計算
-def self.total_exp(user)
-  answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
-  theme_count = Theme.where(user_id: user.id, status: true).count * 10
-  like_count = Like.where(user_id: user.id).count
-  total_exp = answer_like_count + theme_count + like_count
-end
-# 称号の条件式
+  # userのanswerに対するいいね数
+  def self.answer_like_count(user)
+    answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+  end
+
+  # userの経験値計算
+  def self.total_exp(user)
+    answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
+    theme_count = Theme.where(user_id: user.id, status: true).count * 10
+    like_count = Like.where(user_id: user.id).count
+    total_exp = answer_like_count + theme_count + like_count
+  end
+
+  # 称号の条件式
   def self.total_exp_title(total_exp)
     if total_exp >= 100000
       value = "レジェンド"
@@ -52,5 +56,25 @@ end
     elsif total_exp >= 0
       value = "ヒヨッコ"
     end
+  end
+
+  # Twitter認証ログイン用
+  # ユーザーの情報があれば探し、無ければ作成する
+  def self.find_for_oauth(auth)
+    user = User.find_by(uid: auth.uid, provider: auth.provider)
+
+    user ||= User.create!(
+      uid: auth.uid,
+      provider: auth.provider,
+      name: auth[:info][:name],
+      email: User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20]
+    )
+
+    user
+  end
+
+  def self.dummy_email(auth)
+    "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
 end
