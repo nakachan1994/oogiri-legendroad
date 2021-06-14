@@ -15,7 +15,7 @@
           <%= attachment_image_tag @theme, :image, size: '300x150' %>
           <h4><%= @theme.content %></h4>
         </div>
-        <!--回答数非同期に-->
+        <!--回答数非同期に連動-->
         <div id="theme_information">
           <%= render 'themes/information', theme: @theme %>
         </div>
