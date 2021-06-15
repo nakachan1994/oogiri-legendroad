@@ -1,9 +1,12 @@
 <div class="container">
-  <div class="row">
-    <div class="col-5">
-      <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, fallback: "no_image.png", size: '150x150' %>
+  <h2 class="my-3 ml-3">
+    Edit
+  </h2>
+  <div class="row mb-5">
+    <div class="col-md-5 d-flex justify-content-center mb-5">
+      <%= attachment_image_tag @user, :profile_image, :fill, 250, 250, fallback: "no_image.png", size: '250x250', class:"rounded-circle" %>
     </div>
-    <div class="col-7">
+    <div class="col-md-7">
       <%= form_with model: @user, local: true do |f| %>
       <%= render 'layouts/error_messages', model: f.object %>
         <div class="form-group">
@@ -11,14 +14,16 @@
           <%= f.attachment_field :profile_image %>
         </div>
         <div class="form-group">
-          <%= f.label :name, '名前' %>
+          <%= f.label :name, 'ユーザー名' %>
           <%= f.text_field :name, autofocus: true, class:'form-control' %>
         </div>
         <div class="form-group">
           <%= f.label :email, 'メールアドレス' %>
           <%= f.text_field :email, class:'form-control' %>
         </div>
-        <%= f.submit '変更を保存' %>
+        <div class="d-flex justify-content-center">
+          <%= f.submit '変更を保存', class:'btn btn-primary btn-lg' %>
+        </div>
       <% end %>
     </div>
   </div>

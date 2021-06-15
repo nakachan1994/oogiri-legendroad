@@ -1,9 +1,14 @@
 <div class="container">
   <!--退会済みuserのログインエラー-->
   <%= flash[:error] %>
-  <h2>Log in</h2>
-  <div class="row">
-    <div>
+  <h2 class="my-3 ml-3">
+    Log in
+  </h2>
+  <div class="row d-flex justify-content-center mb-5">
+    <div class="col-md-4 bg-light text-center">
+      <p>さあ、冒険にでかけよう！</p>
+    </div>
+    <div class="col-md-4">
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 
         <div class="field">
@@ -23,8 +28,8 @@
           </div>
         <% end %>
 
-        <div class="actions">
-          <%= f.submit "Log in" %>
+        <div class="actions mt-3">
+          <%= f.submit "Log in", class:'btn btn-info btn-block'%>
         </div>
       <% end %>
       <%= render "devise/shared/links" %>
