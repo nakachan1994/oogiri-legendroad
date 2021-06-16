@@ -13,11 +13,11 @@
 
   <body>
     <header class="sticky-top">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
         <a class="navbar-brand" href="/">ロゴ</a>
         <div class="navbar-brand">
           <% if user_signed_in? %>
-            <%= link_to user_path(current_user), class:'navbar-brand text-dark text-truncate' do %>
+            <%= link_to user_path(current_user), class:'navbar-brand text-truncate' do %>
               <%= attachment_image_tag current_user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
               <span class="d-none d-sm-inline">
                 <%= current_user.name %>
@@ -32,63 +32,63 @@
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to themes_path, class: 'nav-link text-dark' do %>
+                <%= link_to themes_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-clipboard-list"></i>お題一覧
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to answers_path, class: 'nav-link text-dark' do %>
+                <%= link_to answers_path, class: 'nav-link text-light' do %>
                   <i class="far fa-lightbulb"></i>回答一覧
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to users_path, class: 'nav-link text-dark' do %>
+                <%= link_to users_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-crown"></i>ランキング
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to user_path(current_user), class: 'nav-link text-dark' do %>
+                <%= link_to user_path(current_user), class: 'nav-link text-light' do %>
                   <i class="fas fa-user-circle"></i>マイページ
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to destroy_user_session_path, method: :delete, data: {confirm: "本当にログアウトしますか？"}, class: 'nav-link text-dark' do %>
+                <%= link_to destroy_user_session_path, method: :delete, data: {confirm: "本当にログアウトしますか？"}, class: 'nav-link text-light' do %>
                   <i class="fas fa-sign-out-alt"></i>ログアウト
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to homes_guide_path, class: 'nav-link text-dark' do %>
+                <%= link_to homes_guide_path, class: 'nav-link text-light' do %>
                   <i class="far fa-question-circle"></i>ガイド
                 <% end %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to themes_path, class: 'nav-link text-dark' do %>
+                <%= link_to themes_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-clipboard-list"></i>お題一覧
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to answers_path, class: 'nav-link text-dark' do %>
+                <%= link_to answers_path, class: 'nav-link text-light' do %>
                   <i class="far fa-lightbulb"></i>回答一覧
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to users_path, class: 'nav-link text-dark' do %>
+                <%= link_to users_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-crown"></i>ランキング
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_session_path, class: 'nav-link text-dark' do %>
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-sign-in-alt"></i>ログイン
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
                   <i class="fas fa-user-plus"></i>新規登録
                 <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to homes_guide_path, class: 'nav-link text-dark' do %>
+                <%= link_to homes_guide_path, class: 'nav-link text-light' do %>
                   <i class="far fa-question-circle"></i>ガイド
                 <% end %>
               </li>
@@ -103,15 +103,15 @@
       </div>
       <%= yield %>
     </main>
-    <footer class="bg-light">
-      <div class="mx-auto text-center">
-        <%= link_to 'お問い合わせ', new_contact_path, class:'text-dark far fa-envelope' %>
+    <footer class="bg-dark">
+      <div class="mx-auto text-center py-5">
+        <%= link_to 'お問い合わせ', new_contact_path, class:'text-light far fa-envelope' %>
         <% if user_signed_in? %>
           <% if current_user.try(:admin?) %>
-            <%= link_to '管理者ログイン', rails_admin_path, class:'text-dark' %>
+            <%= link_to '管理者ログイン', rails_admin_path, class:'text-light' %>
           <% end %>
         <% end %>
-        <p>Copyright © 大喜利レジェンドロード All rights reserved.</p>
+        <div class="pb-2 text-light">Copyright © 大喜利レジェンドロード All rights reserved.</div>
       </div>
     </footer>
   </body>
