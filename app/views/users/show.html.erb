@@ -71,7 +71,7 @@
       <div class="col-md-12 text-center">
         <% if @user == current_user %>
           <%= link_to '編集', edit_user_path(@user), class:"fas fa-user-edit btn btn-secondary my-2 ml-2" %>
-          <%= link_to 'お題投稿', new_theme_path, class:"fas fa-pencil-alt btn btn-primary my-2 ml-2" %>
+          <%= link_to 'お題提案', new_theme_path, class:"fas fa-pencil-alt btn btn-primary my-2 ml-2" %>
           <%= link_to 'MyAmazings', likes_path, class:"fas fa-thumbs-up btn btn-danger my-2 ml-2" %>
         <% end %>
       </div>

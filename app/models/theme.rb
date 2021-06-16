@@ -4,7 +4,7 @@ class Theme < ApplicationRecord
 
   attachment :image
 
-  validates :content, length: {maximum: 100}
+  validates :content, length: {maximum: 50}
   validate :required_either_image_or_content
 
   # themeのstatusの判定

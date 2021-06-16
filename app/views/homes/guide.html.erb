@@ -1,2 +1,173 @@
-<h1>Homes#guide</h1>
-<p>Find me in app/views/homes/guide.html.erb</p>
+<div class="container">
+  <h2 class="my-3 ml-3">
+    Guide
+  </h2>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <h5 class="my-3 ml-3">
+        How to use
+      </h5>
+    </div>
+    <div class="d-flex justify-content-md-center">
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            経験値をためてレジェンドを目指そう！
+          </div>
+          <div class="card-text">
+            経験値は<br>
+            ①自分の回答に対するAmazing数<br>
+            ②採用されたお題数<br>
+            ③他人の回答にAmazingした数<br>
+            ①＋②＋③の合計です。<br>
+            どんどん積極的に行動することがレジェンドへの近道！
+          </div>
+        </div>
+      </div>
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            回答を投稿してみよう！
+          </div>
+          <div class="card-text">
+            お題を見て、おもしろい回答が浮かんだら回答を投稿してみよう。<br>
+            自分の回答にAmazingがついたら、やみつきになること間違いなし！
+          </div>
+        </div>
+      </div>
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            お題を提案してみよう！
+          </div>
+          <div class="card-text">
+            お題はテキストか画像で投稿でき、常に募集しています。<br>
+            マイページの「<%= link_to "お題提案", new_theme_path %>」からお題を提案してみよう。<br>
+            採用されればあなたのお題にみんなが回答してくれる！
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-md-center">
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            おもしろい回答にはAmazingしてみよう！
+          </div>
+          <div class="card-text">
+            「素晴らしい！」、「おもしろい！」、「なるほどその視点があったか〜！」<br>
+            と思った回答にはAmazingしてみよう。<br>
+            あなたのAmazingでみんなが嬉しい気持ちになります！
+          </div>
+        </div>
+      </div>
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            テスト
+          </div>
+          <div class="card-text">
+            テスト
+          </div>
+        </div>
+      </div>
+      <div class="card col-md-4">
+        <div class="card-img-top">
+
+        </div>
+        <div class="card-body">
+          <div class="card-title">
+            とことん楽しもう！
+          </div>
+          <div class="card-text">
+            回答を考えるときも、自分の回答にAmazingがついたときも、
+            他人の回答を見てクスッと笑ったときも、どんなときでも楽しむ。
+            大喜利を通じて笑顔になろう！
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col-md-10 mx-auto">
+      <h5 class="my-3 ml-3">
+        Rule
+      </h5>
+      <div class="card">
+        <div class="card-body">
+          <ul style="list-style: none;">
+            <li>
+              1 やるからにはレジェンドを目指す
+            </li>
+            <li>
+              2 おもしろいと思った回答には積極的にAmazingを
+            </li>
+            <li>
+              3 他人が見て不快に思ったり、傷つくような回答を投稿しない
+            </li>
+            <li>
+              4 大喜利ライフを楽しむ！
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-10 mx-auto">
+      <h5 class="my-3 ml-3">
+        Q&A
+      </h5>
+      <div class="card mb-1">
+        <div class="card-body">
+          Q: Amazingとはなんですか？
+        </div>
+        <div class="card-body">
+          A: 大喜利レジェンドロードでは、素晴らしい！と思ったときにAmazingを使います。
+          他人の回答で素晴らしいと思うものがあれば、Amazingボタンを押して評価してください。
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          Q: 文字数制限はありますか？
+        </div>
+        <div class="card-body">
+          A: お題も回答も50文字以内でお願いします。
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          Q: 1つのお題に対してたくさん回答できますか？
+        </div>
+        <div class="card-body">
+          A: はい。1つのお題に対して何度でも回答することができます。自分のお題に対しても回答することができます。
+        </div>
+      </div>
+      <div class="card mb-1">
+        <div class="card-body">
+          Q: 称号とはなんですか？
+        </div>
+        <div class="card-body">
+          A: 称号は経験値によって変化します。経験値をためて最高の称号【レジェンド】を目指そう！
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
