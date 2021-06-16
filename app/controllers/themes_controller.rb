@@ -21,7 +21,6 @@ class ThemesController < ApplicationController
 
   def index
     @themes = Theme.all.theme_status?.order(updated_at: :desc)
-    # @themes = @themes.where(status: true).order(updated_at: :desc)
   end
 
   def show

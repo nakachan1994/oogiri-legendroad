@@ -1,2 +1,21 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      大喜利レジェンドロード
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <h5 class="my-3 ml-3">
+        New themes
+      </h5>
+      <%= render 'themes/card', themes: @themes %>
+    </div>
+    <div class="col-md-8 mx-auto">
+      <h5 class="my-3 ml-3">
+        User ranking
+      </h5>
+      <%= render 'users/rank', user_ranks: @total_exp_rank %>
+    </div>
+  </div>
+</div>
