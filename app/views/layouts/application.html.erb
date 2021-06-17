@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0c8f135801.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -14,7 +15,9 @@
   <body>
     <header class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
-        <a class="navbar-brand" href="/">ロゴ</a>
+        <a class="navbar-brand" href="/" >
+          <span><%= image_tag 'logo_image.png', :size =>'110x60' %></span>
+        </a>
         <div class="navbar-brand">
           <% if user_signed_in? %>
             <%= link_to user_path(current_user), class:'navbar-brand text-truncate' do %>

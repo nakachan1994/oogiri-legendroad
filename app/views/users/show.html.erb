@@ -1,10 +1,10 @@
 <div class="container">
   <% if @user == current_user %>
-    <h2 class="my-3 ml-3">
+    <h2 class="my-3 ml-3 heading">
       My page
     </h2>
   <% else %>
-    <h2 class="my-3 ml-3">
+    <h2 class="my-3 ml-3 heading">
       <%= @user.name %> 's page
     </h2>
   <% end %>
@@ -79,7 +79,7 @@
   </div>
   <div class="row">
     <div class="col-sm-10 mx-auto mb-5">
-      <h5 class="my-3 ml-3">
+      <h5 class="my-3 ml-3 heading">
         My answers
       </h5>
       <% if @answers.present? %>

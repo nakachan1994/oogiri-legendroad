@@ -1,12 +1,13 @@
 <div class="container">
   <!--退会済みuserのログインエラー-->
   <%= flash[:error] %>
-  <h2 class="my-3 ml-3">
+  <h2 class="my-3 ml-3 heading">
     Log in
   </h2>
   <div class="row d-flex justify-content-center mb-5">
-    <div class="col-md-4 bg-light text-center">
+    <div class="col-md-4 text-center mb-5">
       <p>さあ、冒険にでかけよう！</p>
+      <%= image_tag 'logo_image.png', class:'col' %>
     </div>
     <div class="col-md-4">
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>

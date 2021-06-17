@@ -1,18 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 mx-auto">
-      大喜利レジェンドロード
+    <div class="col-md-10 mx-auto text-center my-5">
+      <%= image_tag 'logo_image.png', :size =>'800x400' %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-4 mx-auto">
-      <h5 class="my-3 ml-3">
+      <h5 class="my-3 ml-3 heading">
         New themes
       </h5>
       <%= render 'themes/card', themes: @themes %>
     </div>
     <div class="col-md-8 mx-auto">
-      <h5 class="my-3 ml-3">
+      <h5 class="my-3 ml-3 heading">
         User ranking
       </h5>
       <%= render 'users/rank', user_ranks: @total_exp_rank %>
