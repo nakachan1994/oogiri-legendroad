@@ -1,0 +1,11 @@
+<footer class="bg-dark">
+  <div class="mx-auto text-center py-5">
+    <%= link_to 'お問い合わせ', new_contact_path, class:'text-light far fa-envelope' %>
+    <% if user_signed_in? %>
+      <% if current_user.try(:admin?) %>
+        <%= link_to '管理者ログイン', rails_admin_path, class:'text-light' %>
+      <% end %>
+    <% end %>
+    <div class="pb-2 text-light">Copyright © 大喜利レジェンドロード All rights reserved.</div>
+  </div>
+</footer>
