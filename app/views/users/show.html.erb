@@ -83,7 +83,11 @@
         My answers
       </h5>
       <% if @answers.present? %>
-        <%= render 'answers/list', answers: @answers %>
+        <!--無限スクロール-->
+        <div class="scroll-list jscroll">
+          <%= render 'answers/list', answers: @answers %>
+          <%= paginate @answers %>
+        </div>
       <% else %>
         <p class="text-center mt-3">まだ回答がありません</p>
       <% end %>

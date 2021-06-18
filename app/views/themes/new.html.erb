@@ -7,6 +7,9 @@
       <%= render 'themes/form', theme: @theme %>
     </div>
     <div class="col-md-7 col-xs-10">
+      <h5 class="my-3 ml-3 heading">
+        List of themes
+      </h5>
       <!--お題投稿の非同期化-->
       <div id="themes_area">
         <%= render 'themes/post_themes', themes: @themes %>

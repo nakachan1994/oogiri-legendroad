@@ -4,7 +4,11 @@
   </h2>
   <div class="row mb-5">
     <div class="col-sm-10 mx-auto">
-      <%= render 'answers/list', answers: @answers %>
+      <!--無限スクロール-->
+      <div class="scroll-list jscroll">
+        <%= render 'answers/list', answers: @answers %>
+        <%= paginate @answers %>
+      </div>
     </div>
   </div>
 </div>
