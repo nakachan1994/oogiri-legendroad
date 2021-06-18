@@ -35,21 +35,21 @@ class User < ApplicationRecord
 
   # 称号の条件式
   def self.total_exp_title(total_exp)
-    if total_exp >= 100000
+    if total_exp >= 2000
       value = "レジェンド"
-    elsif total_exp >= 5000
+    elsif total_exp >= 1500
       value = "マスター"
-    elsif total_exp >= 2500
+    elsif total_exp >= 1000
       value = "キング"
-    elsif total_exp >= 1200
+    elsif total_exp >= 700
       value = "四天王"
-    elsif total_exp >= 500
+    elsif total_exp >= 400
       value = "賢者"
     elsif total_exp >= 250
       value = "名人"
-    elsif total_exp >= 180
+    elsif total_exp >= 150
       value = "天狗"
-    elsif total_exp >= 100
+    elsif total_exp >= 80
       value = "一人前"
     elsif total_exp >= 30
       value = "駆け出し"
