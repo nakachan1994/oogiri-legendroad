@@ -9,8 +9,12 @@ class Answer < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
-# answerのstatusの判定
+  # answerのstatusの判定
   def self.answer_status?
     where(status: true)
+  end
+  # いいね順の回答(top用)
+  def self.many_likes_answers
+     Answer.find(Like.group(:answer_id).order('count(answer_id) desc').limit(3).pluck(:answer_id))
   end
 end

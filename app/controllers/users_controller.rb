@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       answer_like_count.store(user , User.answer_like_count(user))
     end
     @answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
-    @answer_likes_rank = Kaminari.paginate_array(@total_exp_rank).page(params[:page]).per(10)
+    @answer_likes_rank = Kaminari.paginate_array(@answer_likes_rank).page(params[:page]).per(20)
   end
 
   def show

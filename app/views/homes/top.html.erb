@@ -19,6 +19,13 @@
         User ranking
       </h5>
       <%= render 'users/rank', user_ranks: @total_exp_rank %>
+      <h5 class="my-3 ml-3 heading">
+        Answers with many likes
+      </h5>
+      <div class="">
+        <%= render 'answers/list', answers: @many_likes_answers %>
+      </div>
+      
     </div>
   </div>
 </div>
