@@ -1,8 +1,23 @@
 <% if theme.answers.present? %>
+  <!--同率順位表示-->
+  <% last_like = 0 %>
+  <% j = 1 %>
   <% answers.each.with_index(1) do |answer, i| %>
     <div class="card mb-3">
       <div class="card-title ml-2 mt-2">
-        <i class="fas fa-crown"></i><%= i %>位
+        <!--最後の値をlast_likeに保存-->
+        <% if i == 1 %>
+          <% last_like = answer.likes.count %>
+        <% end %>
+        <!--last_likeといいね数比べて同じなら同じ順位、違うなら次の順位表示-->
+      　<% if answer.likes.count != last_like %>
+          <% j = i %>
+          <i class="fas fa-crown"></i><%= j %>位
+          <% last_like = answer.likes.count %>
+        <% else %>
+          <% last_like = answer.likes.count %>
+          <i class="fas fa-crown"></i><%= j %>位
+        <% end %>
       </div>
       <div class="card-body text-center">
         <h4><%= answer.content %></h4>
