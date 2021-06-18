@@ -4,7 +4,11 @@
   </h2>
   <div class="row mb-5">
     <div class="col-md-10 mx-auto">
-      <%= render 'themes/card', themes: @themes %>
+      <!--無限スクロール-->
+      <div class="scroll-list jscroll">
+        <%= render 'themes/card', themes: @themes %>
+        <%= paginate @themes %>
+      </div>
     </div>
   </div>
 </div>

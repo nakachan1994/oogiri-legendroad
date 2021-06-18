@@ -11,9 +11,26 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery.jscroll.min.js
 //= require popper
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+// 無限スクロールの処理
+// ページ下の5%の範囲に来たら発火
+$(window).on('scroll', function() {
+    scrollHeight = $(document).height();
+    scrollPosition = $(window).height() + $(window).scrollTop();
+    if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+          $('.jscroll').jscroll({
+            // 無限スクロールした要素をどこに入れるか
+            contentSelector: '.scroll-list',
+            // 次のページのリンクの場所
+            nextSelector: 'span.next:last a'
+          });
+    }
+});

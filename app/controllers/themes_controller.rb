@@ -20,7 +20,7 @@ class ThemesController < ApplicationController
   end
 
   def index
-    @themes = Theme.all.theme_status?.order(updated_at: :desc)
+    @themes = Theme.all.theme_status?.order(updated_at: :desc).page(params[:page]).per(5)
   end
 
   def show
