@@ -16,14 +16,16 @@
   <body>
     <!--header-->
     <%= render 'layouts/header' %>
-    <!--main-->
-    <main>
-      <div id="flash-message">
-        <%= render 'layouts/flash' %>
-      </div>
-      <%= yield %>
-    </main>
-    <!--footer-->
-    <%= render 'layouts/footer' %>
+    <div id="wrapper">
+      <!--main-->
+      <main>
+        <div id="flash-message">
+          <%= render 'layouts/flash' %>
+        </div>
+        <%= yield %>
+      </main>
+      <!--footer-->
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>
