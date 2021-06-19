@@ -16,7 +16,7 @@
       <%= link_to theme_path(answer.theme.id), class:'text-dark' do %>
         回答数:<%= answer.theme.answers.answer_status?.count %>
       <% end %>
-      投稿日時:<%= answer.theme.updated_at.to_s(:datetime_jp) %>
+      公開日時:<%= answer.theme.updated_at.to_s(:datetime_jp) %>
     </div>
     <div class="card-body text-center">
       <h4><%= answer.content %></h4>
@@ -40,6 +40,7 @@
       <% else %>
         <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
       <% end %>
+      回答日時:<%= answer.created_at.to_s(:datetime_jp) %>
     </div>
   </div>
 <% end %>

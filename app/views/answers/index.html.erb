@@ -4,10 +4,30 @@
   </h2>
   <div class="row mb-5">
     <div class="col-sm-10 mx-auto">
-      <!--無限スクロール-->
-      <div class="scroll-list jscroll">
-        <%= render 'answers/list', answers: @answers %>
-        <%= paginate @answers %>
+        <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+          <li class="tab tab-active heading">
+            New
+          </li>
+          <li class="tab heading">
+            Popular
+          </li>
+        </ul>
+        <div class="tabbox-contents">
+          <div class="tabbox box-show">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll new-tab" tab=".new-tab">
+              <%= render 'answers/list', answers: @new_answers %>
+              <%= paginate @new_answers, param_name: "new_page" %>
+            </div>
+          </div>
+          <div class="tabbox">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
+              <%= render 'answers/list', answers: @popular_answers %>
+              <%= paginate @popular_answers, param_name: "popular_page" %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

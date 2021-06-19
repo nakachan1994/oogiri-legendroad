@@ -19,7 +19,7 @@
       <%= link_to theme_path(theme.id), class:'text-dark' do %>
         回答数:<%= theme.answers.answer_status?.count %>
       <% end %>
-      投稿日時:<%= theme.updated_at.to_s(:datetime_jp) %>
+      公開日時:<%= theme.updated_at.to_s(:datetime_jp) %>
     </div>
   </div>
 <% end %>

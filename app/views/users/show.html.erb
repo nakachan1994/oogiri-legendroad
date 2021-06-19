@@ -82,11 +82,34 @@
       <h5 class="my-3 ml-3 heading">
         My answers
       </h5>
-      <% if @answers.present? %>
-        <!--無限スクロール-->
-        <div class="scroll-list jscroll">
-          <%= render 'answers/list', answers: @answers %>
-          <%= paginate @answers %>
+      <% if @new_answers.present? %>
+        <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+          <li class="tab tab-active heading">
+            New
+          </li>
+          <li class="tab heading">
+            Popular
+          </li>
+        </ul>
+        <div class="tabbox-contents">
+          <div class="tabbox box-show">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll new-tab" tab=".new-tab">
+              <%= render 'answers/list', answers: @new_answers %>
+              <%= paginate @new_answers, param_name: "new_page" %>
+            </div>
+          </div>
+          <div class="tabbox">
+            <% if @popular_answers.present? %>
+              <!--無限スクロール-->
+              <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
+                <%= render 'answers/list', answers: @popular_answers %>
+                <%= paginate @popular_answers, param_name: "popular_page" %>
+              </div>
+            <% else %>
+              <p class="text-center mt-3">まだAmazingされた回答がありません</p>
+            <% end %>
+          </div>
         </div>
       <% else %>
         <p class="text-center mt-3">まだ回答がありません</p>

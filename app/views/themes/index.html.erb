@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="tabbox">
-           <!--無限スクロール-->
+          <!--無限スクロール-->
           <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
             <%= render 'themes/card', themes: @popular_themes %>
             <%= paginate @popular_themes, param_name: "popular_page" %>

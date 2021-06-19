@@ -20,13 +20,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @answers = @user.answers.order(created_at: :desc).page(params[:page]).per(3)
     @answer_like_count = User.answer_like_count(@user)
     @theme_count = Theme.where(user_id: @user.id, status: true).count
     # userモデルの経験値計算
     @total_exp = User.total_exp(@user)
     # userモデルの称号の条件式呼び出し
     @total_exp_title = User.total_exp_title(@total_exp)
+    # answerだけ表示する
+    # @userのanswers
+    @new_answers = Answer.order(created_at: :desc).page(params[:new_page]).per(3)
+    @popular_answers = Answer.find(Like.group(:answer_id).order('count(answer_id) desc').pluck(:answer_id))
+    @popular_answers = Kaminari.paginate_array(@popular_answers).page(params[:popular_page]).per(3)
   end
 
   def edit

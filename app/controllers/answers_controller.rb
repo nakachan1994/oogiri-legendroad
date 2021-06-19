@@ -2,7 +2,9 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @answers = Answer.all.answer_status?.order(created_at: :desc).page(params[:page]).per(5)
+    @new_answers = Answer.all.answer_status?.order(created_at: :desc).page(params[:new_page]).per(5)
+    @popular_answers = Answer.find(Like.group(:answer_id).order('count(answer_id) desc').pluck(:answer_id))
+    @popular_answers = Kaminari.paginate_array(@popular_answers).page(params[:popular_page]).per(5)
   end
 
   def create
