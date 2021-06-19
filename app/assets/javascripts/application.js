@@ -22,13 +22,14 @@
 
 // 無限スクロールの処理
 // ページ下の5%の範囲に来たら発火
+// タブと一緒に使うので、とってくるデータをタブで指定
 $(window).on('scroll', function() {
     scrollHeight = $(document).height();
     scrollPosition = $(window).height() + $(window).scrollTop();
     if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-          $('.jscroll').jscroll({
-            // 無限スクロールした要素をどこに入れるか
-            contentSelector: '.scroll-list',
+          $('.box-show > .jscroll').jscroll({
+            // 無限スクロールした要素のどこを使うか、tabで今選択されているタブを判断
+            contentSelector: $('.box-show > .scroll-list').attr('tab'),
             // 次のページのリンクの場所
             nextSelector: 'span.next:last a'
           });

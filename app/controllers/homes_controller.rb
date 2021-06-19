@@ -1,8 +1,12 @@
 class HomesController < ApplicationController
 
   def top
+    # theme
     @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(5)
+    # 回答数の多い順
     @popular_themes = Theme.find(Answer.group(:theme_id).order('count(theme_id) desc').limit(5).pluck(:theme_id))
+
+    # user
     # 管理者以外経験値順に並び替え
     total_exp_count = {}
     User.where(admin: false).each do |user|
@@ -17,6 +21,8 @@ class HomesController < ApplicationController
     end
     @answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
     @answer_likes_rank = Kaminari.paginate_array(@answer_likes_rank).limit(10)
+
+    # answer
     @new_answers = Answer.all.answer_status?.order(created_at: :desc).limit(3)
     # いいねの多い順の回答
     @many_likes_answers = Answer.many_likes_answers

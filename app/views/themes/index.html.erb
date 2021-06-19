@@ -4,10 +4,29 @@
   </h2>
   <div class="row mb-5">
     <div class="col-md-10 mx-auto">
-      <!--無限スクロール-->
-      <div class="scroll-list jscroll">
-        <%= render 'themes/card', themes: @themes %>
-        <%= paginate @themes %>
+      <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+        <li class="tab tab-active heading">
+          New
+        </li>
+        <li class="tab heading">
+          Popular
+        </li>
+      </ul>
+      <div class="tabbox-contents">
+        <div class="tabbox box-show">
+          <!--無限スクロール-->
+          <div class="scroll-list jscroll new-tab" tab=".new-tab">
+            <%= render 'themes/card', themes: @new_themes %>
+            <%= paginate @new_themes, param_name: "new_page" %>
+          </div>
+        </div>
+        <div class="tabbox">
+           <!--無限スクロール-->
+          <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
+            <%= render 'themes/card', themes: @popular_themes %>
+            <%= paginate @popular_themes, param_name: "popular_page" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

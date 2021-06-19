@@ -20,7 +20,9 @@ class ThemesController < ApplicationController
   end
 
   def index
-    @themes = Theme.all.theme_status?.order(updated_at: :desc).page(params[:page]).per(5)
+    @new_themes = Theme.all.theme_status?.order(updated_at: :desc).page(params[:new_page]).per(5)
+    @popular_themes = Theme.find(Answer.group(:theme_id).order('count(theme_id) desc').pluck(:theme_id))
+    @popular_themes = Kaminari.paginate_array(@popular_themes).page(params[:popular_page]).per(5)
   end
 
   def show
