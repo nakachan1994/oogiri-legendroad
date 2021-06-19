@@ -25,6 +25,7 @@
   }
 }
 
+// footerページ最下部固定用flexbox
 #wrapper {
   display: flex;
   flex-direction: column;
@@ -53,4 +54,32 @@ body {
 
 nav.pagination {
   display: none;
+}
+
+// タブ切り替え
+.tab {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-left: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+}
+
+.tab:first-child {
+  border-left: none;
+}
+// タブがactiveのときのデザイン
+.tab-active {
+  color: #FFF;
+  background: #19b5d1;
+  transition: all 0.2s ease-in-out;
+}
+// タブの中身、最初は非表示
+.tabbox {
+  display: none;
+  padding: 15px;
+}
+// box-showクラスのものだけ表示
+.box-show {
+  display: block;
 }

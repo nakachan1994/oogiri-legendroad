@@ -1,7 +1,8 @@
 class HomesController < ApplicationController
 
   def top
-    @themes = Theme.all.theme_status?.order(updated_at: :desc).limit(5)
+    @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(5)
+    @popular_themes = Theme.find(Answer.group(:theme_id).order('count(theme_id) desc').limit(5).pluck(:theme_id))
     # 経験値順に並び替え
     total_exp_count = {}
     User.where(admin: false).each do |user|
