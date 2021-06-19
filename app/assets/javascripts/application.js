@@ -47,3 +47,29 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+
+// 1ページに2つタブ必要な場合
+$(document).on('turbolinks:load', function() {
+  $(function() {
+    $('.tab2').click(function(){
+      $('.tab2-active').removeClass('tab2-active');
+      $(this).addClass('tab2-active');
+      $('.box2-show').removeClass('box2-show');
+      const index = $(this).index();
+      $('.tabbox2').eq(index).addClass('box2-show');
+    });
+  });
+});
+
+// 1ページに3つタブ必要な場合
+$(document).on('turbolinks:load', function() {
+  $(function() {
+    $('.tab3').click(function(){
+      $('.tab3-active').removeClass('tab3-active');
+      $(this).addClass('tab3-active');
+      $('.box3-show').removeClass('box3-show');
+      const index = $(this).index();
+      $('.tabbox3').eq(index).addClass('box3-show');
+    });
+  });
+});

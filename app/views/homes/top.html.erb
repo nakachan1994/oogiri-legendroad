@@ -12,7 +12,7 @@
       <h5 class="my-3 ml-3 heading ">
         themes
       </h5>
-      <ul class="tab-list d-flex justify-content-around text-center list-unstyled">
+      <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
         <li class="tab tab-active heading">
           New
         </li>
@@ -33,12 +33,40 @@
       <h5 class="my-3 ml-3 heading">
         User ranking
       </h5>
-      <%= render 'users/rank', user_ranks: @total_exp_rank %>
+      <ul class="tab-list2 d-flex justify-content-around text-center list-unstyled mx-3">
+        <li class="tab2 tab2-active heading">
+          Experience point
+        </li>
+        <li class="tab2 heading">
+          Amazing
+        </li>
+      </ul>
+      <div class="tabbox2-contents">
+        <div class="tabbox2 box2-show">
+          <%= render 'users/rank', user_ranks: @total_exp_rank %>
+        </div>
+        <div class="tabbox2">
+          <%= render 'users/rank', user_ranks: @answer_likes_rank %>
+        </div>
+      </div>
       <h5 class="my-3 ml-3 heading">
-        Answers with many likes
+        Answers
       </h5>
-      <div class="">
-        <%= render 'answers/list', answers: @many_likes_answers %>
+      <ul class="tab-list3 d-flex justify-content-around text-center list-unstyled mx-3">
+        <li class="tab3 tab3-active heading">
+          New
+        </li>
+        <li class="tab3 heading">
+          Amazing
+        </li>
+      </ul>
+      <div class="tabbox3-contents">
+        <div class="tabbox3 box3-show">
+          <%= render 'answers/list', answers: @new_answers %>
+        </div>
+        <div class="tabbox3">
+          <%= render 'answers/list', answers: @many_likes_answers %>
+        </div>
       </div>
     </div>
   </div>
