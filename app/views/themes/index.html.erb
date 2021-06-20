@@ -11,6 +11,9 @@
         <li class="tab heading">
           Popular
         </li>
+        <li class="tab heading">
+          Pick up
+        </li>
       </ul>
       <div class="tabbox-contents">
         <div class="tabbox box-show">
@@ -25,6 +28,13 @@
           <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
             <%= render 'themes/card', themes: @popular_themes %>
             <%= paginate @popular_themes, param_name: "popular_page" %>
+          </div>
+        </div>
+        <div class="tabbox">
+          <!--無限スクロール-->
+          <div class="scroll-list jscroll pick-up-tab" tab=".pick-up-tab">
+            <%= render 'themes/card', themes: @pick_up_themes %>
+            <%= paginate @pick_up_themes, param_name: "pick_up_page" %>
           </div>
         </div>
       </div>

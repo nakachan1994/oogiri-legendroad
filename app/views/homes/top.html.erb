@@ -10,14 +10,14 @@
   <div class="row mb-5">
     <div class="col-md-4 mx-auto">
       <h5 class="my-3 ml-3 heading ">
-        themes
+        Themes
       </h5>
       <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
         <li class="tab tab-active heading">
           New
         </li>
         <li class="tab heading">
-          Popular
+          Pick up
         </li>
       </ul>
       <div class="tabbox-contents">
@@ -25,7 +25,7 @@
            <%= render 'themes/card', themes: @new_themes %>
         </div>
         <div class="tabbox">
-          <%= render 'themes/card', themes: @popular_themes %>
+          <%= render 'themes/card', themes: @pick_up_themes %>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
           New
         </li>
         <li class="tab3 heading">
-          Amazing
+          Pick up
         </li>
       </ul>
       <div class="tabbox3-contents">
@@ -65,7 +65,7 @@
           <%= render 'answers/list', answers: @new_answers %>
         </div>
         <div class="tabbox3">
-          <%= render 'answers/list', answers: @many_likes_answers %>
+          <%= render 'answers/list', answers: @pick_up_answers %>
         </div>
       </div>
     </div>

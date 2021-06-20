@@ -9,7 +9,13 @@ Rails.application.routes.draw do
   }
   root to:'homes#top'
   get 'homes/guide'
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    collection do
+      get :month
+      get :week
+      get :day
+    end
+  end
   resources :themes, only: [:new, :create, :index, :show, :destroy] do
     resources :answers, only: [:create, :destroy] do
       resources :likes, only: [:create]

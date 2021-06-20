@@ -13,8 +13,13 @@ class Answer < ApplicationRecord
   def self.answer_status?
     where(status: true)
   end
-  # いいね順の回答(top用)
+  # いいね順の回答(通算)
   def self.many_likes_answers
-     Answer.find(Like.group(:answer_id).order('count(answer_id) desc').limit(3).pluck(:answer_id))
+    Answer.find(Like.group(:answer_id).order('count(answer_id) desc').limit(3).pluck(:answer_id))
+  end
+  # いいね順の回答(週間）
+  def self.pick_up_answers
+    now = Time.current
+    Answer.find(Like.group(:answer_id).where(created_at: now.all_week).order('count(answer_id) desc').limit(3).pluck(:answer_id))
   end
 end

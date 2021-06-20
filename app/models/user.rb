@@ -20,16 +20,61 @@ class User < ApplicationRecord
     super && (self.status == true)
   end
 
-  # userのanswerに対するいいね数
+  # userのanswerに対するいいね数（通算）
   def self.answer_like_count(user)
     answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
   end
 
-  # userの経験値計算
+  # userのanswerに対するいいね数（月間）
+  def self.month_answer_like_count(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_month, answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+  end
+
+  # userのanswerに対するいいね数（週間）
+  def self.week_answer_like_count(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_week, answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+  end
+
+  # userのanswerに対するいいね数（日）
+  def self.day_answer_like_count(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_day,answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+  end
+
+  # userの経験値計算(通算)
   def self.total_exp(user)
     answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
     theme_count = Theme.where(user_id: user.id, status: true).count * 10
     like_count = Like.where(user_id: user.id).count
+    total_exp = answer_like_count + theme_count + like_count
+  end
+
+  # userの経験値計算（月間）
+  def self.month_total_exp(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_month, answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
+    theme_count = Theme.where(created_at: now.all_month, user_id: user.id, status: true).count * 10
+    like_count = Like.where(created_at: now.all_month, user_id: user.id).count
+    total_exp = answer_like_count + theme_count + like_count
+  end
+
+  # userの経験値計算（週間）
+  def self.week_total_exp(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_week, answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
+    theme_count = Theme.where(created_at: now.all_week, user_id: user.id, status: true).count * 10
+    like_count = Like.where(created_at: now.all_week, user_id: user.id).count
+    total_exp = answer_like_count + theme_count + like_count
+  end
+
+   # userの経験値計算（日）
+  def self.day_total_exp(user)
+    now = Time.current
+    answer_like_count = Like.where(created_at: now.all_day, answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
+    theme_count = Theme.where(created_at: now.all_day, user_id: user.id, status: true).count * 10
+    like_count = Like.where(created_at: now.all_day, user_id: user.id).count
     total_exp = answer_like_count + theme_count + like_count
   end
 
