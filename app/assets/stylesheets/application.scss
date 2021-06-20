@@ -141,3 +141,16 @@ nav.pagination {
 .box3-show {
   display: block;
 }
+
+// タブ切り替え
+.tab-rank {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  border-left: solid 1px #CCC;
+  border-bottom: solid 1px #CCC;
+}
+
+.tab-rank:first-child {
+  border-left: none;
+}

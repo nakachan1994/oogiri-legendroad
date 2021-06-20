@@ -1,0 +1,65 @@
+<div class="container">
+  <h2 class="my-3 ml-3 heading">
+    Ranking
+  </h2>
+  <div class="row mb-5">
+    <div class="col-md-10 mx-auto">
+      <h5 class="my-3 ml-3 heading">
+        Experience point ranking
+      </h5>
+       <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+        <%= link_to users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            All
+          </li>
+        <% end %>
+        <%= link_to month_users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            Month
+          </li>
+        <% end %>
+        <%= link_to week_users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            Week
+          </li>
+        <% end %>
+        <%= link_to day_users_path, class:'col tab-rank tab-active' do %>
+          <li class="heading text-light">
+            Day
+          </li>
+        <% end %>
+      </ul>
+      <div class="p-3">
+        <%= render 'users/day_rank', user_ranks: @day_total_exp_rank %>
+      </div>
+      <h5 class="my-3 ml-3 heading">
+        Amazing ranking
+      </h5>
+      <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+        <%= link_to users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            All
+          </li>
+        <% end %>
+        <%= link_to month_users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            Month
+          </li>
+        <% end %>
+        <%= link_to week_users_path, class:'col tab-rank' do %>
+          <li class="heading text-dark">
+            Week
+          </li>
+        <% end %>
+        <%= link_to day_users_path, class:'col tab-rank tab-active' do %>
+          <li class="heading text-light">
+            Day
+          </li>
+        <% end %>
+      </ul>
+      <div class="p-3">
+        <%= render 'users/day_rank', user_ranks: @day_answer_likes_rank %>
+      </div>
+    </div>
+  </div>
+</div>

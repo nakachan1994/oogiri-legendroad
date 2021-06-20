@@ -20,9 +20,9 @@
           <% end %>
         </td>
         <td class="d-none d-md-table-cell">【<%= User.total_exp_title(User.total_exp(user)) %>】</td>
-        <td><%= User.total_exp(user) %></td>
-        <td class="d-none d-md-table-cell"><%= User.answer_count(user) %></td>
-        <td><%= User.answer_like_count(user) %></td>
+        <td><%= User.time_total_exp(user, Time.current.all_day) %></td>
+        <td class="d-none d-md-table-cell"><%= User.time_answer_count(user, Time.current.all_day) %></td>
+        <td><%= User.time_answer_like_count(user, Time.current.all_day) %></td>
       </tr>
     <% end %>
   </tbody>
