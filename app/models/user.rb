@@ -50,7 +50,7 @@ class User < ApplicationRecord
   def self.answer_count(user)
     Answer.where(user_id: user.id, status: true).count
   end
-  
+
   # userの回答数（期間指定）
   def self.time_answer_count(user, time)
     Answer.where(created_at: time, user_id: user.id, status: true).count
