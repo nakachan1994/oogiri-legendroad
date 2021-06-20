@@ -27,9 +27,8 @@ class UsersController < ApplicationController
     # userモデルの称号の条件式呼び出し
     @total_exp_title = User.total_exp_title(@total_exp)
     # answerだけ表示する
-    # @userのanswers
-    @new_answers = Answer.order(created_at: :desc).page(params[:new_page]).per(3)
-    @popular_answers = Answer.find(Like.group(:answer_id).order('count(answer_id) desc').pluck(:answer_id))
+    @new_answers = @user.answers.order(created_at: :desc).page(params[:new_page]).per(3)
+    @popular_answers = Answer.where(user_id: @user.id).sort{|a,b| b.likes.count <=> a.likes.count}
     @popular_answers = Kaminari.paginate_array(@popular_answers).page(params[:popular_page]).per(3)
   end
 
