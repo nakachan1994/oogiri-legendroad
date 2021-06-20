@@ -4,45 +4,30 @@
   </h2>
   <div class="row mb-5">
     <div class="col-sm-10 mx-auto">
-      <% if @likes.present? %>
-        <!--無限スクロール-->
-        <div class="scroll-list jscroll">
-          <% @likes.each do |like| %>
-            <div class="card mb-3">
-              <div class="card-title ml-3 mt-3">
-                <%= link_to user_path(like.answer.theme.user.id), class:'text-dark' do %>
-                  <%= attachment_image_tag like.answer.theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
-                  <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
-                <% end %>
-              </div>
-              <%= link_to theme_path(like.answer.theme), class:'text-dark text-decoration-none' do %>
-                <div class="card-body text-center">
-                  <%= attachment_image_tag like.answer.theme, :image, class:'card-img-top w-75' %>
-                <h4><%= like.answer.theme.content %></h4>
-                </div>
-              <% end %>
-              <div class="card-body border-bottom d-flex justify-content-around">
-                <%= link_to theme_path(like.answer.theme.id), class:'text-dark' do %>
-                  回答数:<%= like.answer.theme.answers.answer_status?.count %>
-                <% end %>
-                公開日時:<%= like.answer.theme.updated_at.to_s(:datetime_jp) %>
-              </div>
-              <div class="card-body text-center">
-                <h4><%= like.answer.content %></h4>
-              </div>
-              <div class="card-body text-right">
-                <%= link_to user_path(like.answer.user_id), class:'text-dark' do %>
-                  <%= attachment_image_tag like.answer.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
-                  <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
-                <% end %>
-                <div>
-                  <i class="fas fa-thumbs-up"></i><%= like.answer.likes.count %> Amazing
-                </div>
-                回答日時:<%= like.answer.created_at.to_s(:datetime_jp) %>
-              </div>
+      <% if @new_likes.present? %>
+        <ul class="tab-list d-flex justify-content-around text-center list-unstyled mx-3">
+          <li class="tab tab-active heading">
+            New
+          </li>
+          <li class="tab heading">
+            Amazing
+          </li>
+        </ul>
+        <div class="tabbox-contents">
+          <div class="tabbox box-show">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll new-tab" tab=".new-tab">
+              <%= render 'likes/list', likes: @new_likes %>
+              <%= paginate @new_likes, param_name: "new_page" %>
             </div>
-          <% end %>
-          <%= paginate @likes %>
+          </div>
+          <div class="tabbox">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
+              <%= render 'likes/list', likes: @popular_likes %>
+              <%= paginate @popular_likes, param_name: "popular_page" %>
+            </div>
+          </div>
         </div>
       <% else %>
         <p class="text-center mt-3 mb-5">まだAmazingした回答はありません</p>
