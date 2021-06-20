@@ -2,10 +2,10 @@ class HomesController < ApplicationController
 
   def top
     # theme
-    @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(5)
+    @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(6)
     # 回答数の多いお題（週間）
     now = Time.current
-    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: now.all_week).order('count(theme_id) desc').limit(5).pluck(:theme_id))
+    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: now.all_week).order('count(theme_id) desc').limit(6).pluck(:theme_id))
 
     # user
     # 管理者以外経験値順に並び替え
