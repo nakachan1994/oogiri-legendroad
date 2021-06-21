@@ -1,7 +1,7 @@
 <header class="sticky-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
     <a class="navbar-brand" href="/" >
-      <span><%= image_tag 'logo_icon.png', :size =>'50x50' %></span>
+      <span><%= image_tag 'logo_icon.png', :size =>'50x50', data: {"turbolinks" => false} %></span>
     </a>
     <div class="navbar-brand">
       <% if user_signed_in? %>
