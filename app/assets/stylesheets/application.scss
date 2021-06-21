@@ -64,7 +64,6 @@ nav.pagination {
   border-left: solid 1px #CCC;
   border-bottom: solid 1px #CCC;
 }
-
 .tab:first-child {
   border-left: none;
 }
@@ -82,6 +81,11 @@ nav.pagination {
 // box-showクラスのものだけ表示
 .box-show {
   display: block;
+}
+// hover時のアクション
+.tab:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
 }
 
 // １ページ2つタブ必要な場合
@@ -112,6 +116,11 @@ nav.pagination {
 .box2-show {
   display: block;
 }
+// hover時のアクション
+.tab2:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
 
 // １ページ3つタブ必要な場合
 // タブ切り替え
@@ -141,6 +150,11 @@ nav.pagination {
 .box3-show {
   display: block;
 }
+// hover時のアクション
+.tab3:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
 
 // ユーザーランクのタブデザイン
 .tab-rank {
@@ -154,6 +168,11 @@ nav.pagination {
 .tab-rank:first-child {
   border-left: none;
 }
+// hover時のアクション
+.tab-rank:hover{
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
 
 // アコーディオンメニューデザイン
 .accordion-container .accordion-title {
@@ -161,12 +180,14 @@ nav.pagination {
   background: #343a40 ;
   cursor: pointer
 }
-// カーソルが乗ったときの色
+// カーソルが乗ったときのデザイン
 .accordion-container .accordion-title:hover,
 .accordion-container .accordion-title:active,
 .accordion-container .content-entry.open .accordion-title {
   background-color: #00aaa7;
   color: white;
+  box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
 }
 // 最初は隠しておく
 .accordion-content {
