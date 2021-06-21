@@ -154,3 +154,46 @@ nav.pagination {
 .tab-rank:first-child {
   border-left: none;
 }
+
+// アコーディオンメニューデザイン
+.accordion-container .accordion-title {
+  color: #fff;
+  background: #343a40 ;
+  cursor: pointer
+}
+// カーソルが乗ったときの色
+.accordion-container .accordion-title:hover,
+.accordion-container .accordion-title:active,
+.accordion-container .content-entry.open .accordion-title {
+  background-color: #00aaa7;
+  color: white;
+}
+// 最初は隠しておく
+.accordion-content {
+  display: none;
+}
+// トグルの位置固定
+.accordion-title{
+  position: relative;
+}
+// トグルのデザイン
+.accordion-title:after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 38%;
+  transition: all 0.2s ease-in-out;
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-top: solid 2px #fff;
+  border-right: solid 2px #fff;
+  -webkit-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+.accordion-title.open:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 45%;
+}
+
