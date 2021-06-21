@@ -3,9 +3,8 @@ class HomesController < ApplicationController
   def top
     # theme
     @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(6)
-    # 回答数の多いお題（週間）
-    now = Time.current
-    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: now.all_week).order('count(theme_id) desc').limit(6).pluck(:theme_id))
+    # 今月の回答数の多いお題
+    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: Time.current.all_week).order('count(theme_id) desc').limit(6).pluck(:theme_id))
 
     # user
     # 管理者以外経験値順に並び替え
@@ -25,7 +24,7 @@ class HomesController < ApplicationController
 
     # answer
     @new_answers = Answer.all.answer_status?.order(created_at: :desc).limit(3)
-    # いいねの多い回答（週間）
+    # 今月のいいね数の多い回答
     @pick_up_answers = Answer.pick_up_answers
   end
 

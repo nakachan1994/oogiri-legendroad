@@ -11,6 +11,9 @@
           <li class="tab heading">
             Amazing
           </li>
+          <li class="tab heading">
+            Pick up
+          </li>
         </ul>
         <div class="tabbox-contents">
           <div class="tabbox box-show">
@@ -25,6 +28,17 @@
             <div class="scroll-list jscroll popular-tab" tab=".popular-tab">
               <%= render 'answers/list', answers: @popular_answers %>
               <%= paginate @popular_answers, param_name: "popular_page" %>
+            </div>
+          </div>
+          <div class="tabbox">
+            <!--無限スクロール-->
+            <div class="scroll-list jscroll pick-up-tab" tab=".pick-up-tab">
+              <% if @pick_up_answers.present? %>
+                <%= render 'answers/list', answers: @pick_up_answers %>
+                <%= paginate @pick_up_answers, param_name: "pick_up_page" %>
+              <% else %>
+                <p class="text-center mt-3 mb-5">今週のアクションがまだありません。</p>
+              <% end %>
             </div>
           </div>
         </div>

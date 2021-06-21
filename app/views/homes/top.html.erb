@@ -25,7 +25,11 @@
            <%= render 'themes/card', themes: @new_themes %>
         </div>
         <div class="tabbox">
-          <%= render 'themes/card', themes: @pick_up_themes %>
+          <% if @pick_up_themes.present? %>
+            <%= render 'themes/card', themes: @pick_up_themes %>
+          <% else %>
+            <p class="text-center mt-3 mb-5">今週のアクションがまだありません。</p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -65,7 +69,11 @@
           <%= render 'answers/list', answers: @new_answers %>
         </div>
         <div class="tabbox3">
-          <%= render 'answers/list', answers: @pick_up_answers %>
+          <% if @pick_up_answers.present? %>
+            <%= render 'answers/list', answers: @pick_up_answers %>
+          <% else %>
+            <p class="text-center mt-3 mb-5">今週のアクションがまだありません。</p>
+          <% end %>
         </div>
       </div>
     </div>
