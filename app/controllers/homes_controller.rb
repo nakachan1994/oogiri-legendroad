@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
 
   def top
+    @user = User.new
     # theme
     @new_themes = Theme.all.theme_status?.order(updated_at: :desc).limit(6)
     # 今月の回答数の多いお題
