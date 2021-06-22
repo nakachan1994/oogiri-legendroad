@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
   describe 'モデルのテスト' do
-    it "有効な投稿内容の場合は保存されるか" do
+    it "有効なcontactの場合は保存されるか" do
       expect(build(:contact)).to be_valid
     end
 
