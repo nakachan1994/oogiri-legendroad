@@ -99,7 +99,7 @@ document.addEventListener('turbolinks:load', function() {
 $(document).on('turbolinks:load', function() {
   $(window).scroll(function () {
     var now = $(window).scrollTop();
-    if (now > 1300) {
+    if (now > 2500) {
       $('.pagetop').fadeIn("slow");
     } else {
       $('.pagetop').fadeOut('slow');
