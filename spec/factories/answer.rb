@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :answer do
-    user_id
-    theme_id
+    association :theme
+    association :user
     content { Faker::Lorem.characters(number:10) }
   end
 end
