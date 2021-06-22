@@ -94,3 +94,25 @@ document.addEventListener('turbolinks:load', function() {
     $("#loading_box").delay(1200).fadeOut('slow');//ローディングテキストを1.2秒（1200ms）待機してからフェードアウト
   });
 });
+
+// ページトップボタン表示
+$(document).on('turbolinks:load', function() {
+  $(window).scroll(function () {
+    var now = $(window).scrollTop();
+    if (now > 1300) {
+      $('.pagetop').fadeIn("slow");
+    } else {
+      $('.pagetop').fadeOut('slow');
+    }
+  });
+});
+// ページトップへ戻るクリックで、スクロールして１番上に戻る
+$(document).on('turbolinks:load', function() {
+  $(function(){
+    $('.pagetop').click(function(){
+      $('body,html').animate({
+      scrollTop: 0},500);
+      return false;
+    });
+  });
+});
