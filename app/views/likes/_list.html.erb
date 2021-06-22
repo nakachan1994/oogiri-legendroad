@@ -1,9 +1,14 @@
 <% likes.each do |like| %>
   <div class="card mb-3">
     <div class="card-title ml-3 mt-3">
-      <%= link_to user_path(like.answer.theme.user.id), class:'text-dark' do %>
-        <%= attachment_image_tag like.answer.theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
-        <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
+      <% if like.answer.theme.user.admin? %>
+        <%= image_tag 'logo_icon.png', :size =>'25x25' %>
+        大喜利レジェンドロード管理者
+      <% else %>
+        <%= link_to user_path(like.answer.theme.user.id), class:'text-dark' do %>
+          <%= attachment_image_tag like.answer.theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
+          <%= like.answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.theme.user)) %>】
+        <% end %>
       <% end %>
     </div>
     <%= link_to theme_path(like.answer.theme), class:'text-dark text-decoration-none' do %>
@@ -18,7 +23,7 @@
       <% end %>
       公開日時:<%= like.answer.theme.updated_at.to_s(:datetime_jp) %>
     </div>
-    <div class="card-body text-center">
+    <div class="card-body text-center mt-4">
       <h4><%= like.answer.content %></h4>
     </div>
     <div class="card-body text-right">

@@ -1,9 +1,14 @@
 <% answers.each do |answer| %>
   <div class="card mb-4">
     <div class="card-title ml-3 mt-3">
-      <%= link_to user_path(answer.theme.user.id), class:'text-dark' do %>
-        <%= attachment_image_tag answer.theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
-        <%= answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(answer.theme.user)) %>】
+      <% if answer.theme.user.admin? %>
+        <%= image_tag 'logo_icon.png', :size =>'25x25' %>
+        大喜利レジェンドロード管理者
+      <% else %>
+        <%= link_to user_path(answer.theme.user.id), class:'text-dark' do %>
+          <%= attachment_image_tag answer.theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
+          <%= answer.theme.user.name %>【<%= User.total_exp_title(User.total_exp(answer.theme.user)) %>】
+        <% end %>
       <% end %>
     </div>
     <%= link_to theme_path(answer.theme), class:'text-dark text-decoration-none' do %>

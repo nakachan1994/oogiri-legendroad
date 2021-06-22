@@ -6,9 +6,14 @@
     <div class="col-sm-10 mx-auto">
       <div class="card mb-3">
         <div class="card-title ml-3 mt-3">
-          <%= link_to user_path(@theme.user_id), class:'text-dark' do %>
-            <%= attachment_image_tag @theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
-            <%= @theme.user.name %>【<%= @total_exp_title %>】
+          <% if @theme.user.admin? %>
+            <%= image_tag 'logo_icon.png', :size =>'25x25' %>
+            大喜利レジェンドロード管理者
+          <% else %>
+            <%= link_to user_path(@theme.user_id), class:'text-dark' do %>
+              <%= attachment_image_tag @theme.user, :profile_image, :fill, 25, 25, fallback: "no_image.png", size: '25x25', class:"rounded-circle" %>
+              <%= @theme.user.name %>【<%= @total_exp_title %>】
+            <% end %>
           <% end %>
         </div>
         <div class="card-body border-bottom text-center">
