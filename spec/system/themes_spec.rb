@@ -39,8 +39,19 @@ describe '投稿のテスト' do
         expect(page).to have_content theme.created_at.to_s(:datetime_jp)
       end
       it "削除リンクが表示されているか" do
-        
+        expect(page).to have_link"", href: theme_path(theme.id)
       end
+    end
+    describe "投稿処理に関するテスト" do
+      # it "投稿に成功しサクセスメッセージが表示されるか" do
+      #   post themes_path(user_id: user.id, content: 'hoge'), xhr: true
+      #   expect.to have_content "を提案しました"
+      # end
+      # it "投稿に失敗したときエラーメッセージが出るか" do
+      #   click_button "提案"
+      #   expect(page).to have_content 'エラー'
+      # end
+      
     end
   end
 end
