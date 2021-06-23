@@ -19,6 +19,6 @@ class Answer < ApplicationRecord
   end
   # いいね順の回答(月間）
   def self.pick_up_answers
-    Answer.find(Like.group(:answer_id).where(created_at: Time.current.all_week).order('count(answer_id) desc').limit(3).pluck(:answer_id))
+    Answer.find(Like.group(:answer_id).where(created_at: Time.current.all_week).order(Arel.sql('count(answer_id) desc')).limit(3).pluck(:answer_id))
   end
 end
