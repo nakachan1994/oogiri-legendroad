@@ -23,12 +23,7 @@
           <%= render 'layouts/flash' %>
         </div>
         <%= yield %>
-      <!-- ページトップへ戻るボタン -->
-      <p class="pagetop" style="display: none;">
-        <a href="#">
-          <i class="fas fa-chevron-up"></i>
-        </a>
-      </p>
+        <%= render 'layouts/pagetop' %>
       </main>
       <!--footer-->
       <%= render 'layouts/footer' %>
