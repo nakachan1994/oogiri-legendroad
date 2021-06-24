@@ -7,7 +7,7 @@ describe 'いいねのテスト' do
   let!(:theme) { create(:theme, user_id: user.id) }
   let!(:answer) { create(:answer, user_id: user.id, theme_id: theme.id) }
   let!(:like) { create(:like, user_id: user.id, answer_id: answer.id) }
-  
+
   describe "index画面のテスト" do
     before do
       sign_in user
