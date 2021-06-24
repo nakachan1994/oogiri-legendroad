@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe "投稿のテスト" do
+describe "ユーザーのテスト" do
   let!(:user) { create(:user) }
   let!(:theme) { create(:theme, user_id: user.id) }
   let!(:answer) { create(:answer, user_id: user.id, theme_id: theme.id) }

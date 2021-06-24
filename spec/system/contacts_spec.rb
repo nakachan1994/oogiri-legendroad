@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe "投稿のテスト" do
+describe "お問い合わせのテスト" do
   let!(:contact) { create(:contact) }
   describe "トップ画面のテスト" do
     before do
