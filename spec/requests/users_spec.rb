@@ -23,5 +23,26 @@ RSpec.describe "Users", type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+  
+  describe "GET /month" do
+    it "returns http success" do
+      get month_users_path
+      expect(response).to have_http_status(:success)
+    end
+  end
+  
+  describe "GET /week" do
+    it "returns http success" do
+      get week_users_path
+      expect(response).to have_http_status(:success)
+    end
+  end
+  
+  describe "GET /day" do
+    it "returns http success" do
+      get day_users_path
+      expect(response).to have_http_status(:success)
+    end
+  end
 
 end

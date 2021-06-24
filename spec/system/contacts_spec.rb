@@ -41,20 +41,20 @@ describe "お問い合わせのテスト" do
   describe "confirm画面のテスト" do
     before do
       visit new_contact_path
-      fill_in 'contact[name]', with: Faker::Lorem.characters(number:5)
-      fill_in 'contact[email]', with: Faker::Lorem.characters(number:10)
-      fill_in 'contact[content]', with: Faker::Lorem.characters(number:20)
+      fill_in 'contact[name]', with: contact.name
+      fill_in 'contact[email]', with: contact.email
+      fill_in 'contact[content]', with: contact.content
       click_button "確認画面へ進む"
     end
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Contact confirmation"
       end
-      # it "new画面で入力した値がフォームに入力されているか" do
-      #   expect(page).to have_field 'contact[name]', with: contact.name
-      #   expect(page).to have_field 'contact[email]', with: contact.email
-      #   expect(page).to have_field 'contact[content]', with: contact.content
-      # end
+      it "new画面で入力した値がフォームに入力されているか" do
+        expect(page).to have_content contact.name
+        expect(page).to have_content contact.email
+        expect(page).to have_content contact.content
+      end
       it "送信するボタンがあるか" do
         expect(page).to have_button "送信する"
       end

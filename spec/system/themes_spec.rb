@@ -48,24 +48,7 @@ describe 'お題のテスト' do
       expect(page).to have_current_path theme_path(theme.id)
     end
 
-    context "投稿処理に関するテスト" do
-      # it "投稿に成功しサクセスメッセージが表示されるか" do
-      #   post themes_path(user_id: user.id, content: 'hoge'), xhr: true
-      #   expect.to have_content "を提案しました"
-      # end
-      # it "投稿に失敗したときエラーメッセージが出るか" do
-      #   click_button "提案"
-      #   expect(page).to have_content 'エラー'
-      # end
-    end
     context "削除のテスト" do
-      it "削除ボタンを押したときに確認ダイアログが出るか" do
-        # click_link "", href: theme_path(theme.id)
-        # expect{
-        #   page.accept_confirm "本当に削除しますか？"
-        #   expect(page).to have_content "投稿を削除しました"
-        # }.to change{ Theme.count }.by(-1)
-      end
       it "削除されるか" do
         expect{ theme.destroy }.to change{ Theme.count }.by(-1)
       end
@@ -94,20 +77,20 @@ describe 'お題のテスト' do
     end
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
-        # click_link theme.user.name
-        # expect(page).to have_current_path user_path(theme.user.id)
+        click_link theme.user.name, match: :first
+        expect(page).to have_current_path user_path(theme.user.id)
       end
       it "theme.contentの遷移先はshow画面か" do
-        # click_link theme.content
-        # expect(page).to have_current_path theme_path(theme.id)
+        click_link theme.content, match: :first
+        expect(page).to have_current_path theme_path(theme.id)
       end
       it "回答するの遷移先はshow画面か" do
-        # click_link "回答する"
-        # expect(page).to have_current_path theme_path(theme.id)
+        click_link "回答する", match: :first
+        expect(page).to have_current_path theme_path(theme.id)
       end
       it "回答数の遷移先はshow画面か" do
-        # click_link "回答数"
-        # expect(page).to have_current_path theme_path(theme.id)
+        click_link "回答数", match: :first
+        expect(page).to have_current_path theme_path(theme.id)
       end
     end
   end
@@ -150,18 +133,7 @@ describe 'お題のテスト' do
         expect(page).to have_current_path user_path(user.id)
       end
     end
-    context "投稿処理のテスト" do
-      it "投稿に成功しサクセスメッセージが表示されるか" do
-        #
-      end
-      it "投稿に失敗したときエラーメッセージが出るか" do
-        #
-      end
-    end
     context "削除のテスト" do
-      it "削除ボタンを押したときに確認ダイアログが出るか" do
-        #
-      end
       it "削除されるか" do
         expect{ answer.destroy }.to change{ Answer.count }.by(-1)
       end

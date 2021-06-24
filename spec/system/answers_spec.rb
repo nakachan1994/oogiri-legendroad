@@ -46,26 +46,21 @@ describe '回答のテスト' do
     end
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
-        # click_link theme.user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link theme.user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
       it "theme.contentの遷移先はtheme/show画面か" do
-        # click_link theme.content
-        # expect(page).to have_current_path theme_path(theme)
+        click_link theme.content, match: :first
+        expect(page).to have_current_path theme_path(theme)
       end
       it "回答数の遷移先はtheme/show画面か" do
-        # click_link "回答数"
-        # expect(page).to have_current_path theme_path(theme)
+        click_link "回答数", match: :first
+        expect(page).to have_current_path theme_path(theme)
       end
       it "answer.user.nameの遷移先はuser/show画面か" do
-        # click_link answer.user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link answer.user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
-    end
-    it 'いいねできる' do
-      # find('.far').click
-      # expect(page).to have_css '.fas'
-      # expect(page).to have_css "div#likes_buttons_#{answer.id}"
     end
   end
 end

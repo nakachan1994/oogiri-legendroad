@@ -8,9 +8,9 @@ RSpec.describe "Contacts", type: :request do
     end
   end
 
-  describe "GET /confirm" do
+  describe "POST /confirm" do
     it "returns http success" do
-      post confirm_contacts_path
+      post confirm_contacts_path, params: {contact: {name: 'test', email: 'a@a', content: 'content sample'}}
       expect(response).to have_http_status(:success)
     end
   end

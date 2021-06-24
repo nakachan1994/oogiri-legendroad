@@ -55,24 +55,24 @@ describe "ユーザーのテスト" do
     end
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
-        # click_link user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
       it "Allの遷移先はindex画面か" do
-        # click_link "All"
-        # expect(page).to have_current_path users_path
+        click_link "All", match: :first
+        expect(page).to have_current_path users_path
       end
       it "Monthの遷移先はmonth画面か" do
-        # click_link "Month"
-        # expect(page).to have_current_path month_users_path
+        click_link "Month", match: :first
+        expect(page).to have_current_path month_users_path
       end
       it "Weekの遷移先はweek画面か" do
-        # click_link "Week"
-        # expect(page).to have_current_path week_users_path
+        click_link "Week", match: :first
+        expect(page).to have_current_path week_users_path
       end
       it "Dayの遷移先はday画面か" do
-        # click_link "Day"
-        # expect(page).to have_current_path day_users_path
+        click_link "Day", match: :first
+        expect(page).to have_current_path day_users_path
       end
     end
   end
@@ -102,24 +102,24 @@ describe "ユーザーのテスト" do
     end
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
-        # click_link user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
       it "Allの遷移先はindex画面か" do
-        # click_link "All"
-        # expect(page).to have_current_path users_path
+        click_link "All", match: :first
+        expect(page).to have_current_path users_path
       end
       it "Monthの遷移先はmonth画面か" do
-        # click_link "Month"
-        # expect(page).to have_current_path month_users_path
+        click_link "Month", match: :first
+        expect(page).to have_current_path month_users_path
       end
       it "Weekの遷移先はweek画面か" do
-        # click_link "Week"
-        # expect(page).to have_current_path week_users_path
+        click_link "Week", match: :first
+        expect(page).to have_current_path week_users_path
       end
       it "Dayの遷移先はday画面か" do
-        # click_link "Day"
-        # expect(page).to have_current_path day_users_path
+        click_link "Day", match: :first
+        expect(page).to have_current_path day_users_path
       end
     end
   end
@@ -149,24 +149,24 @@ describe "ユーザーのテスト" do
     end
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
-        # click_link user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
       it "Allの遷移先はindex画面か" do
-        # click_link "All"
-        # expect(page).to have_current_path users_path
+        click_link "All", match: :first
+        expect(page).to have_current_path users_path
       end
       it "Monthの遷移先はmonth画面か" do
-        # click_link "Month"
-        # expect(page).to have_current_path month_users_path
+        click_link "Month", match: :first
+        expect(page).to have_current_path month_users_path
       end
       it "Weekの遷移先はweek画面か" do
-        # click_link "Week"
-        # expect(page).to have_current_path week_users_path
+        click_link "Week", match: :first
+        expect(page).to have_current_path week_users_path
       end
       it "Dayの遷移先はday画面か" do
-        # click_link "Day"
-        # expect(page).to have_current_path day_users_path
+        click_link "Day", match: :first
+        expect(page).to have_current_path day_users_path
       end
     end
   end
@@ -196,24 +196,24 @@ describe "ユーザーのテスト" do
     end
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
-        # click_link user.name
-        # expect(page).to have_current_path user_path(user.id)
+        click_link user.name, match: :first
+        expect(page).to have_current_path user_path(user.id)
       end
       it "Allの遷移先はindex画面か" do
-        # click_link "All"
-        # expect(page).to have_current_path users_path
+        click_link "All", match: :first
+        expect(page).to have_current_path users_path
       end
       it "Monthの遷移先はmonth画面か" do
-        # click_link "Month"
-        # expect(page).to have_current_path month_users_path
+        click_link "Month", match: :first
+        expect(page).to have_current_path month_users_path
       end
       it "Weekの遷移先はweek画面か" do
-        # click_link "Week"
-        # expect(page).to have_current_path week_users_path
+        click_link "Week", match: :first
+        expect(page).to have_current_path week_users_path
       end
       it "Dayの遷移先はday画面か" do
-        # click_link "Day"
-        # expect(page).to have_current_path day_users_path
+        click_link "Day", match: :first
+        expect(page).to have_current_path day_users_path
       end
     end
   end
@@ -252,6 +252,9 @@ describe "ユーザーのテスト" do
         expect(page).to have_content "Amazing"
         expect(page).to have_content answer.created_at.to_s(:datetime_jp)
       end
+      it "いいねリンクはあるか" do
+        expect(page).to have_link"Amazing"
+      end
     end
     context "リンク先のテスト" do
       it "編集の遷移先はedit画面か" do
@@ -271,8 +274,8 @@ describe "ユーザーのテスト" do
         expect(page).to have_current_path user_path(user.id)
       end
       it "theme.contentの遷移先はtheme/show画面か" do
-        # click_link theme.content
-        # expect(page).to have_current_path theme_path(theme.id)
+        click_link theme.content, match: :first
+        expect(page).to have_current_path theme_path(theme.id)
       end
       it "answer.user.nameの遷移先はuser/show画面か" do
         click_link answer.user.name

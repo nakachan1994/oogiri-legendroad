@@ -37,12 +37,12 @@ describe 'いいねのテスト' do
         expect(page).to have_current_path user_path(user.id)
       end
       it "theme.contentの遷移先はtheme/show画面か" do
-        # click_link theme.content
-        # expect(page).to have_current_path theme_path(theme)
+        click_link theme.content, match: :first
+        expect(page).to have_current_path theme_path(theme)
       end
       it "回答数の遷移先はtheme/show画面か" do
-        # click_link "回答数"
-        # expect(page).to have_current_path theme_path(theme)
+        click_link "回答数", match: :first
+        expect(page).to have_current_path theme_path(theme)
       end
       it "answer.user.nameの遷移先はuser/show画面か" do
         click_link answer.user.name
