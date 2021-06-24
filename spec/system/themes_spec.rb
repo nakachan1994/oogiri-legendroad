@@ -85,13 +85,12 @@ describe '投稿のテスト' do
       end
     end
     it "提案されたお題が表示されているか" do
-      # click_on 'new'
-      # expect(page).to have_content theme.user.name
-      # expect(page).to have_content theme.content
-      # expect(page).to have_link theme.content
-      # expect(page).to have_link "回答する"
-      # expect(page).to have_content "回答数"
-      # expect(page).to have_content theme.updated_at.to_s(:datetime_jp)
+      expect(page).to have_content theme.user.name
+      expect(page).to have_content theme.content
+      expect(page).to have_link theme.content
+      expect(page).to have_link "回答する"
+      expect(page).to have_content "回答数"
+      expect(page).to have_content theme.updated_at.to_s(:datetime_jp)
     end
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
