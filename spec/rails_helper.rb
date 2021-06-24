@@ -65,6 +65,8 @@ RSpec.configure do |config|
   # letを使用したときに、FactoryBotが使用できるように設定
   config.include FactoryBot::Syntax::Methods
 
-  # deviseのヘルパーメソッドを使用できるように設定
+  # deviseのヘルパーメソッドをsystemで使用できるように設定
   config.include Devise::Test::IntegrationHelpers, type: :system
+  # deviseのヘルパーメソッドをrequestsで使用できるように設定
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
