@@ -4,6 +4,13 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :reject_user, only: [:create]
 
+  # ゲストログイン用
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to themes_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
   # GET /resource/sign_in
   # def new
   #   super

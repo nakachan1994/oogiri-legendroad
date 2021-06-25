@@ -81,6 +81,14 @@ class User < ApplicationRecord
     end
   end
 
+  # ゲストログイン用
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "ゲスト"
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
   # Twitter認証ログイン用
   # ユーザーの情報があれば探し、無ければ作成する
   def self.find_for_oauth(auth)
