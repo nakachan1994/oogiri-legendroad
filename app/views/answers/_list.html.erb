@@ -46,6 +46,14 @@
         <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
       <% end %>
       回答日時:<%= answer.created_at.to_s(:datetime_jp) %>
+      <% if answer.theme.image == nil %>
+      <div>
+        <%= link_to "https://twitter.com/share?url=#{ request.url }
+        &text=【お題】%0a%0a#{ answer.theme.content }%0a%0a【回答】%0a%0a#{ answer.content }%0a",class:'text-decoration-none', target: '_blank' do %>
+          <i class="fab fa-twitter" style='color: #3399FF;'></i>シェア
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
 <% end %>
