@@ -11,7 +11,11 @@
       <!--スライドショー-->
       <div class="slick">
         <div><%= image_tag 'logo_image.png', class:'col' %></div>
-        <div><%= image_tag 'guide_logo_image.jpg', class:'col mt-5' %></div>
+        <div>
+          <%= link_to homes_guide_path do %>
+            <%= image_tag 'guide_logo_image.jpg', class:'col mt-5' %>
+          <% end %>
+        </div>
         <div><%= image_tag 'notice_image.png', class:'col mt-5' %></div>
       </div>
 
