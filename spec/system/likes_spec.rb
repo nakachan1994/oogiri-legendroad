@@ -13,6 +13,7 @@ describe 'いいねのテスト' do
       sign_in user
       visit likes_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Amazings"
@@ -31,6 +32,7 @@ describe 'いいねのテスト' do
         expect(page).to have_content answer.created_at.to_s(:datetime_jp)
       end
     end
+
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
         click_link theme.user.name

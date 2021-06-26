@@ -4,23 +4,27 @@ require 'rails_helper'
 
 describe "お問い合わせのテスト" do
   let!(:contact) { create(:contact) }
+
   describe "トップ画面のテスト" do
     before do
       visit root_path
     end
+
     context "表示の確認" do
       it "top画面にお問い合わせページへのリンクが表示されているか" do
-        expect(page).to have_link"", href: new_contact_path
+        expect(page).to have_link "", href: new_contact_path
       end
       it "root_pathが / であるか" do
         expect(current_path).to eq('/')
       end
     end
   end
+
   describe "new画面のテスト" do
     before do
       visit new_contact_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Contact Us"
@@ -29,10 +33,11 @@ describe "お問い合わせのテスト" do
         expect(page).to have_button "確認画面へ進む"
       end
     end
+
     it "入力後のリダイレクト先は正しいか" do
-      fill_in 'contact[name]', with: Faker::Lorem.characters(number:5)
-      fill_in 'contact[email]', with: Faker::Lorem.characters(number:10)
-      fill_in 'contact[content]', with: Faker::Lorem.characters(number:20)
+      fill_in 'contact[name]', with: Faker::Lorem.characters(number: 5)
+      fill_in 'contact[email]', with: Faker::Lorem.characters(number: 10)
+      fill_in 'contact[content]', with: Faker::Lorem.characters(number: 20)
       click_button "確認画面へ進む"
       expect(page).to have_current_path confirm_contacts_path
     end
@@ -46,6 +51,7 @@ describe "お問い合わせのテスト" do
       fill_in 'contact[content]', with: contact.content
       click_button "確認画面へ進む"
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Contact confirmation"
@@ -59,6 +65,7 @@ describe "お問い合わせのテスト" do
         expect(page).to have_button "送信する"
       end
     end
+
     context "投稿処理に関するテスト" do
       it "送信後のリダイレクト先は正しいか" do
         click_button "送信する"
@@ -82,6 +89,7 @@ describe "お問い合わせのテスト" do
     before do
       visit complete_contacts_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Contact completed"
@@ -90,6 +98,7 @@ describe "お問い合わせのテスト" do
         expect(page).to have_link "Topへ戻る"
       end
     end
+
     it "topへ戻るの遷移先はtop画面か" do
       click_link "Topへ戻る"
       expect(page).to have_current_path root_path

@@ -29,7 +29,7 @@ class ThemesController < ApplicationController
 
   def show
     @theme = Theme.find(params[:id])
-    @answers = Answer.includes(:user, :theme, :likes).where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.size <=> a.likes.size}
+    @answers = Answer.includes(:user, :theme, :likes).where(theme_id: @theme.id, status: true).sort { |a, b| b.likes.size <=> a.likes.size }
     @answer = Answer.new
     @total_exp_title = User.total_exp_title(User.total_exp(@theme.user))
   end

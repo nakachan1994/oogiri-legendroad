@@ -12,9 +12,10 @@ describe '回答のテスト' do
     before do
       visit root_path
     end
+
     context "表示の確認" do
       it "top画面に回答一覧へのリンクが表示されているか" do
-        expect(page).to have_link"", href: answers_path
+        expect(page).to have_link "", href: answers_path
       end
       it "root_pathが / であるか" do
         expect(current_path).to eq('/')
@@ -26,6 +27,7 @@ describe '回答のテスト' do
     before do
       visit answers_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Answers"
@@ -44,6 +46,7 @@ describe '回答のテスト' do
         expect(page).to have_content answer.created_at.to_s(:datetime_jp)
       end
     end
+
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
         click_link theme.user.name, match: :first

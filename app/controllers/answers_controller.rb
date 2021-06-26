@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
     if @answer.save
       flash.now[:notice] = '回答を投稿しました'
       # 非同期化のため@answersの値渡す
-      @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
+      @answers = Answer.where(theme_id: @theme.id, status: true).sort { |a, b| b.likes.count <=> a.likes.count }
       render :theme_answers
     else
       render :error
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
     flash.now[:alert] = '投稿を削除しました'
     # 非同期化のため@theme,@answersの値渡す
     @theme = Theme.find(params[:theme_id])
-    @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
+    @answers = Answer.where(theme_id: @theme.id, status: true).sort { |a, b| b.likes.count <=> a.likes.count }
     render :theme_answers
   end
 

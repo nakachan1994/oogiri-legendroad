@@ -1,5 +1,4 @@
 class ContactMailer < ApplicationMailer
-
   def contact_mail(contact)
     @contact = contact
     mail(
@@ -7,6 +6,6 @@ class ContactMailer < ApplicationMailer
       to: contact.email,
       subject: 'お問い合わせを承りました',
       bcc: ENV['SEND_MAIL']
-      )
+    )
   end
 end

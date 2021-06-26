@@ -5,16 +5,16 @@ class UsersController < ApplicationController
     # 経験値順に並び替え(通算)
     total_exp_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      total_exp_count.store(user , User.total_exp(user))
+      total_exp_count.store(user, User.total_exp(user))
     end
-    @total_exp_rank = total_exp_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @total_exp_rank = total_exp_count.sort_by { |_, v| v }.reverse.to_h.keys
     @total_exp_rank = Kaminari.paginate_array(@total_exp_rank).limit(20)
     # 獲得いいね順に並び替え（通算）
     answer_like_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      answer_like_count.store(user , User.answer_like_count(user))
+      answer_like_count.store(user, User.answer_like_count(user))
     end
-    @answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @answer_likes_rank = answer_like_count.sort_by { |_, v| v }.reverse.to_h.keys
     @answer_likes_rank = Kaminari.paginate_array(@answer_likes_rank).limit(20)
   end
 
@@ -22,16 +22,16 @@ class UsersController < ApplicationController
     # 通算経験値順に並び替え(月間)
     total_exp_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      total_exp_count.store(user , User.time_total_exp(user, Time.current.all_month))
+      total_exp_count.store(user, User.time_total_exp(user, Time.current.all_month))
     end
-    @month_total_exp_rank = total_exp_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @month_total_exp_rank = total_exp_count.sort_by { |_, v| v }.reverse.to_h.keys
     @month_total_exp_rank = Kaminari.paginate_array(@month_total_exp_rank).limit(20)
     # 獲得いいね順に並び替え（月間）
     answer_like_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      answer_like_count.store(user , User.time_answer_like_count(user, Time.current.all_month))
+      answer_like_count.store(user, User.time_answer_like_count(user, Time.current.all_month))
     end
-    @month_answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @month_answer_likes_rank = answer_like_count.sort_by { |_, v| v }.reverse.to_h.keys
     @month_answer_likes_rank = Kaminari.paginate_array(@month_answer_likes_rank).limit(20)
   end
 
@@ -39,16 +39,16 @@ class UsersController < ApplicationController
     # 通算経験値順に並び替え(週間)
     total_exp_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      total_exp_count.store(user , User.time_total_exp(user, Time.current.all_week))
+      total_exp_count.store(user, User.time_total_exp(user, Time.current.all_week))
     end
-    @week_total_exp_rank = total_exp_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @week_total_exp_rank = total_exp_count.sort_by { |_, v| v }.reverse.to_h.keys
     @week_total_exp_rank = Kaminari.paginate_array(@week_total_exp_rank).limit(20)
     # 獲得いいね順に並び替え（週間）
     answer_like_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      answer_like_count.store(user , User.time_answer_like_count(user, Time.current.all_week))
+      answer_like_count.store(user, User.time_answer_like_count(user, Time.current.all_week))
     end
-    @week_answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @week_answer_likes_rank = answer_like_count.sort_by { |_, v| v }.reverse.to_h.keys
     @week_answer_likes_rank = Kaminari.paginate_array(@week_answer_likes_rank).limit(20)
   end
 
@@ -56,16 +56,16 @@ class UsersController < ApplicationController
     # 通算経験値順に並び替え(日)
     total_exp_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      total_exp_count.store(user , User.time_total_exp(user, Time.current.all_day))
+      total_exp_count.store(user, User.time_total_exp(user, Time.current.all_day))
     end
-    @day_total_exp_rank = total_exp_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @day_total_exp_rank = total_exp_count.sort_by { |_, v| v }.reverse.to_h.keys
     @day_total_exp_rank = Kaminari.paginate_array(@day_total_exp_rank).limit(20)
     # 獲得いいね順に並び替え（日）
     answer_like_count = {}
     User.includes(:themes, :answers, :likes).where(admin: false).each do |user|
-      answer_like_count.store(user , User.time_answer_like_count(user, Time.current.all_day))
+      answer_like_count.store(user, User.time_answer_like_count(user, Time.current.all_day))
     end
-    @day_answer_likes_rank = answer_like_count.sort_by{ |_,v| v}.reverse.to_h.keys
+    @day_answer_likes_rank = answer_like_count.sort_by { |_, v| v }.reverse.to_h.keys
     @day_answer_likes_rank = Kaminari.paginate_array(@day_answer_likes_rank).limit(20)
   end
 
@@ -79,14 +79,14 @@ class UsersController < ApplicationController
     @total_exp_title = User.total_exp_title(@total_exp)
     # answerだけ表示する
     @new_answers = @user.answers.includes(:user, :theme, :likes).order(created_at: :desc).page(params[:new_page]).per(3)
-    @popular_answers = @user.answers.includes(:user, :theme, :likes).sort{|a,b| b.likes.size <=> a.likes.size}
+    @popular_answers = @user.answers.includes(:user, :theme, :likes).sort { |a, b| b.likes.size <=> a.likes.size }
     @popular_answers = Kaminari.paginate_array(@popular_answers).page(params[:popular_page]).per(3)
   end
 
   def edit
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user), flash: {alert: '権限がありません'}
+      redirect_to user_path(current_user), flash: { alert: '権限がありません' }
     end
   end
 

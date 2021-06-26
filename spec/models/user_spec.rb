@@ -34,6 +34,7 @@ RSpec.describe User, type: :model do
       before do
         @user = build(:user)
       end
+
       it "同じnameの場合エラーメッセージが返ってくるか" do
         @user.save
         another_user = build(:user)

@@ -11,9 +11,10 @@ describe 'お題のテスト' do
     before do
       visit root_path
     end
+
     context "表示の確認" do
       it "top画面にお題一覧へのリンクが表示されているか" do
-        expect(page).to have_link"", href: themes_path
+        expect(page).to have_link "", href: themes_path
       end
       it "root_pathが / であるか" do
         expect(current_path).to eq('/')
@@ -26,6 +27,7 @@ describe 'お題のテスト' do
       sign_in user
       visit new_theme_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Theme proposal"
@@ -40,9 +42,10 @@ describe 'お題のテスト' do
         expect(page).to have_content theme.created_at.to_s(:datetime_jp)
       end
       it "削除リンクが表示されているか" do
-        expect(page).to have_link"", href: theme_path(theme.id)
+        expect(page).to have_link "", href: theme_path(theme.id)
       end
     end
+
     it "theme.contentの遷移先はshow画面か" do
       click_link theme.content
       expect(page).to have_current_path theme_path(theme.id)
@@ -50,7 +53,7 @@ describe 'お題のテスト' do
 
     context "削除のテスト" do
       it "削除されるか" do
-        expect{ theme.destroy }.to change{ Theme.count }.by(-1)
+        expect { theme.destroy }.to change(Theme, :count).by(-1)
       end
     end
   end
@@ -59,6 +62,7 @@ describe 'お題のテスト' do
     before do
       visit themes_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Themes"
@@ -67,6 +71,7 @@ describe 'お題のテスト' do
         expect(page).to have_css '.tab'
       end
     end
+
     it "提案されたお題が表示されているか" do
       expect(page).to have_content theme.user.name
       expect(page).to have_content theme.content
@@ -100,6 +105,7 @@ describe 'お題のテスト' do
       sign_in user
       visit theme_path(theme.id)
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Theme"
@@ -120,9 +126,10 @@ describe 'お題のテスト' do
         expect(page).to have_content answer.created_at.to_s(:datetime_jp)
       end
       it "削除リンクが表示されているか" do
-        expect(page).to have_link"", href: theme_answer_path(theme.id, answer.id)
+        expect(page).to have_link "", href: theme_answer_path(theme.id, answer.id)
       end
     end
+
     context "リンク先のテスト" do
       it "theme.user.nameの遷移先はuser/show画面か" do
         click_link theme.user.name
@@ -133,9 +140,10 @@ describe 'お題のテスト' do
         expect(page).to have_current_path user_path(user.id)
       end
     end
+
     context "削除のテスト" do
       it "削除されるか" do
-        expect{ answer.destroy }.to change{ Answer.count }.by(-1)
+        expect { answer.destroy }.to change(Answer, :count).by(-1)
       end
     end
   end

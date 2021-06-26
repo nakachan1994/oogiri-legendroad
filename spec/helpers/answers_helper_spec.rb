@@ -11,5 +11,4 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe AnswersHelper, type: :helper do
-
 end

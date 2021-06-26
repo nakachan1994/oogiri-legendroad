@@ -11,6 +11,7 @@ describe "ユーザーのテスト" do
     before do
       visit root_path
     end
+
     context "表示の確認" do
       it "top画面にランキングページへのリンクが表示されているか" do
         expect(page).to have_link"", href: users_path
@@ -34,6 +35,7 @@ describe "ユーザーのテスト" do
     before do
       visit users_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Ranking"
@@ -53,6 +55,7 @@ describe "ユーザーのテスト" do
         expect(page).to have_link "Day"
       end
     end
+
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
         click_link user.name, match: :first
@@ -81,6 +84,7 @@ describe "ユーザーのテスト" do
     before do
       visit month_users_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Ranking"
@@ -100,6 +104,7 @@ describe "ユーザーのテスト" do
         expect(page).to have_link "Day"
       end
     end
+
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
         click_link user.name, match: :first
@@ -128,6 +133,7 @@ describe "ユーザーのテスト" do
     before do
       visit week_users_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Ranking"
@@ -147,6 +153,7 @@ describe "ユーザーのテスト" do
         expect(page).to have_link "Day"
       end
     end
+
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
         click_link user.name, match: :first
@@ -175,6 +182,7 @@ describe "ユーザーのテスト" do
     before do
       visit day_users_path
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Ranking"
@@ -194,6 +202,7 @@ describe "ユーザーのテスト" do
         expect(page).to have_link "Day"
       end
     end
+
     context "リンク先のテスト" do
       it "user.nameの遷移先はshow画面か" do
         click_link user.name, match: :first
@@ -223,6 +232,7 @@ describe "ユーザーのテスト" do
       sign_in user
       visit user_path(user.id)
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "page"
@@ -253,9 +263,10 @@ describe "ユーザーのテスト" do
         expect(page).to have_content answer.created_at.to_s(:datetime_jp)
       end
       it "いいねリンクはあるか" do
-        expect(page).to have_link"Amazing"
+        expect(page).to have_link "Amazing"
       end
     end
+
     context "リンク先のテスト" do
       it "編集の遷移先はedit画面か" do
         click_link "編集"
@@ -283,11 +294,13 @@ describe "ユーザーのテスト" do
       end
     end
   end
+
   describe "edit画面のテスト" do
     before do
       sign_in user
       visit edit_user_path(user.id)
     end
+
     context "表示の確認" do
       it "見出しがあるか" do
         expect(page).to have_content "Edit"
@@ -300,9 +313,10 @@ describe "ユーザーのテスト" do
         expect(page).to have_button "変更を保存"
       end
     end
+
     context "更新処理のテスト" do
       it "更新に成功しサクセスメッセージが表示されるか" do
-        fill_in 'user[name]', with: Faker::Lorem.characters(number:5)
+        fill_in 'user[name]', with: Faker::Lorem.characters(number: 5)
         fill_in 'user[email]', with: Faker::Internet.email
         click_button '変更を保存'
         expect(page).to have_content '変更しました'
@@ -314,7 +328,7 @@ describe "ユーザーのテスト" do
         expect(page).to have_content 'エラー'
       end
       it "更新後のリダイレクト先は正しいか" do
-        fill_in 'user[name]', with: Faker::Lorem.characters(number:5)
+        fill_in 'user[name]', with: Faker::Lorem.characters(number: 5)
         fill_in 'user[email]', with: Faker::Internet.email
         click_button '変更を保存'
         expect(page).to have_current_path user_path(user)

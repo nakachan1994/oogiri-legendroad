@@ -5,13 +5,14 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys:[:email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 
   # ログイン後の遷移先
   def after_sign_in_path_for(resource)
     themes_path
   end
+
   # ログアウト後の遷移先
   def after_sign_out_path_for(resource)
     homes_guide_path

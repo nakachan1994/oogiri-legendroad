@@ -14,7 +14,7 @@ RSpec.describe Answer, type: :model do
 
     it "contentの文字数が50文字以上の場合エラーメッセージが返ってくるか" do
       answer = build(:answer)
-      answer.content = Faker::Lorem.characters(number:51)
+      answer.content = Faker::Lorem.characters(number: 51)
       answer.valid?
       expect(answer.errors[:content]).to include("は50文字以内で入力してください")
     end

@@ -10,14 +10,14 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true, length: {maximum: 11}
+  validates :name, presence: true, uniqueness: true, length: { maximum: 11 }
   validates :email, presence: true, uniqueness: true
 
   attachment :profile_image
 
   # 退会済みuserか確認
   def active_for_authentication?
-    super && (self.status == true)
+    super && (status == true)
   end
 
   # userのanswerに対するいいね数（通算）

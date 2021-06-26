@@ -31,7 +31,7 @@ class Users::SessionsController < Devise::SessionsController
   def reject_user
     @user = User.find_by(name: params[:user][:name].downcase)
     if @user
-      if (@user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false))
+      if @user.valid_password?(params[:user][:password]) && (@user.active_for_authentication? == false)
         flash[:error] = "アカウント停止中です。"
         redirect_to new_user_session_path
       end

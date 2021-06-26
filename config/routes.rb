@@ -5,13 +5,13 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     registrations: 'users/registrations',
     # Twitter API認証用
-    :omniauth_callbacks => 'users/omniauth_callbacks'
+    :omniauth_callbacks => 'users/omniauth_callbacks',
   }
   # ゲストログイン用
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
-  root to:'homes#top'
+  root to: 'homes#top'
   get 'homes/guide'
   resources :users, only: [:index, :show, :edit, :update] do
     collection do

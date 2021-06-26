@@ -4,7 +4,7 @@ class Theme < ApplicationRecord
 
   attachment :image
 
-  validates :content, length: {maximum: 50}
+  validates :content, length: { maximum: 50 }
   validate :required_either_image_or_content
 
   # themeのstatusの判定
@@ -18,6 +18,7 @@ class Theme < ApplicationRecord
   end
 
   private
+
   # image.contentのどちらかの値があればtrue
   # image.contentどちらも入力されている場合や入力されていない場合は false
   def required_either_image_or_content
