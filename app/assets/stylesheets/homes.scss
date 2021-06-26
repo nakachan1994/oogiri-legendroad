@@ -124,7 +124,7 @@
   font-size: 50px;
   position: absolute;
   z-index: 100;
-  left: -50px;
+  left: 30px;
   top: 230px;
   color: gray;
 }
@@ -133,7 +133,29 @@
   font-size: 50px;
   position: absolute;
   z-index: 100;
-  right: -50px;
+  right: 30px;
   top: 230px;
   color: gray;
 }
+
+/* スマートフォンサイズ（425px）以下の際に適用される設定 */
+@media screen and (max-width:425px) {
+  .fa-angle-left {
+    font-size: 40px;
+    position: absolute;
+    z-index: 100;
+    left: 30px;
+    top: 130px;
+    color: gray;
+  }
+  .fa-angle-right {
+    font-size: 40px;
+    position: absolute;
+    z-index: 100;
+    right: 30px;
+    top: 130px;
+    color: gray;
+  }
+}
+
+
