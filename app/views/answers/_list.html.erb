@@ -19,7 +19,7 @@
     <% end %>
     <div class="card-body border-bottom d-flex justify-content-around">
       <%= link_to theme_path(answer.theme.id), class:'text-dark' do %>
-        回答数:<%= answer.theme.answers.answer_status?.count %>
+        回答数:<%= answer.theme.answers.answer_status?.size %>
       <% end %>
       公開日時:<%= answer.theme.updated_at.to_s(:datetime_jp) %>
     </div>
@@ -34,7 +34,7 @@
       <% if user_signed_in? %>
         <% if answer.user == current_user %>
           <div>
-            <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
+            <i class="far fa-thumbs-up"></i><%= answer.likes.size %> Amazing
           </div>
         <% else %>
           <!--いいね機能非同期-->
@@ -43,7 +43,7 @@
           </div>
         <% end %>
       <% else %>
-        <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
+        <i class="far fa-thumbs-up"></i><%= answer.likes.size %> Amazing
       <% end %>
       回答日時:<%= answer.created_at.to_s(:datetime_jp) %>
       <% if answer.theme.image == nil %>

@@ -17,8 +17,8 @@ class Answer < ApplicationRecord
   def self.many_likes_answers
     Answer.find(Like.group(:answer_id).order('count(answer_id) desc').limit(3).pluck(:answer_id))
   end
-  # いいね順の回答(月間）
+  # いいね順の回答(週間）
   def self.pick_up_answers
-    Answer.find(Like.group(:answer_id).where(created_at: Time.current.all_week).order(Arel.sql('count(answer_id) desc')).limit(3).pluck(:answer_id))
+    Answer.includes(:user, :theme, :likes).find(Like.group(:answer_id).where(created_at: Time.current.all_week).order(Arel.sql('count(answer_id) desc')).limit(3).pluck(:answer_id))
   end
 end

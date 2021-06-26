@@ -22,7 +22,7 @@
     </div>
     <div class="card-body d-flex justify-content-around">
       <%= link_to theme_path(theme.id), class:'text-dark' do %>
-        回答数:<%= theme.answers.answer_status?.count %>
+        回答数:<%= theme.answers.answer_status?.size %>
       <% end %>
       公開日時:<%= theme.updated_at.to_s(:datetime_jp) %>
     </div>

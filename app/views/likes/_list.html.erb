@@ -19,7 +19,7 @@
     <% end %>
     <div class="card-body border-bottom d-flex justify-content-around">
       <%= link_to theme_path(like.answer.theme.id), class:'text-dark' do %>
-        回答数:<%= like.answer.theme.answers.answer_status?.count %>
+        回答数:<%= like.answer.theme.answers.answer_status?.size %>
       <% end %>
       公開日時:<%= like.answer.theme.updated_at.to_s(:datetime_jp) %>
     </div>
@@ -32,7 +32,7 @@
         <%= like.answer.user.name %>【<%= User.total_exp_title(User.total_exp(like.answer.user)) %>】
       <% end %>
       <div>
-        <i class="fas fa-thumbs-up"></i><%= like.answer.likes.count %> Amazing
+        <i class="fas fa-thumbs-up"></i><%= like.answer.likes.size %> Amazing
       </div>
       回答日時:<%= like.answer.created_at.to_s(:datetime_jp) %>
     </div>

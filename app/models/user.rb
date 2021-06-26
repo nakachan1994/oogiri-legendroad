@@ -22,38 +22,38 @@ class User < ApplicationRecord
 
   # userのanswerに対するいいね数（通算）
   def self.answer_like_count(user)
-    answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+    answer_like_count = Like.includes(:user, :answer).where(answer_id: Answer.includes(:user, :theme, :likes).where(user_id: user.id).pluck(:id)).size
   end
 
   # userのanswerに対するいいね数(期間指定)
   def self.time_answer_like_count(user, time)
-    answer_like_count = Like.where(created_at: time, answer_id: Answer.where(user_id: user.id).pluck(:id)).count
+    answer_like_count = Like.includes(:user, :answer).where(created_at: time, answer_id: Answer.where(user_id: user.id).pluck(:id)).size
   end
 
   # userの経験値計算(通算)
   def self.total_exp(user)
-    answer_like_count = Like.where(answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
-    theme_count = Theme.where(user_id: user.id, status: true).count * 10
-    like_count = Like.where(user_id: user.id).count
+    answer_like_count = Like.includes(:user, :answer).where(answer_id: user.answers.pluck(:id)).size * 10
+    theme_count = Theme.includes(:user, :answers).where(user_id: user.id, status: true).size * 10
+    like_count = Like.includes(:user, :answer).where(user_id: user.id).size
     total_exp = answer_like_count + theme_count + like_count
   end
 
   # userの経験値計算（期間指定）
   def self.time_total_exp(user, time)
-    answer_like_count = Like.where(created_at: time, answer_id: Answer.where(user_id: user.id).pluck(:id)).count * 10
-    theme_count = Theme.where(created_at: time, user_id: user.id, status: true).count * 10
-    like_count = Like.where(created_at: time, user_id: user.id).count
+    answer_like_count = Like.where(created_at: time, answer_id: Answer.where(user_id: user.id).pluck(:id)).size * 10
+    theme_count = Theme.where(created_at: time, user_id: user.id, status: true).size * 10
+    like_count = Like.where(created_at: time, user_id: user.id).size
     total_exp = answer_like_count + theme_count + like_count
   end
 
   # userの回答数（通算）
   def self.answer_count(user)
-    Answer.where(user_id: user.id, status: true).count
+    Answer.includes(:user, :theme, :likes).where(user_id: user.id, status: true).size
   end
 
   # userの回答数（期間指定）
   def self.time_answer_count(user, time)
-    Answer.where(created_at: time, user_id: user.id, status: true).count
+    Answer.includes(:user, :theme, :likes).where(created_at: time, user_id: user.id, status: true).size
   end
 
   # 称号の条件式

@@ -14,7 +14,7 @@ class Theme < ApplicationRecord
 
   # 今月の回答数の多いお題
   def self.pick_up_themes
-    Theme.find(Answer.group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).limit(6).pluck(:theme_id))
+    Theme.includes(:user, :answers).find(Answer.group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).limit(6).pluck(:theme_id))
   end
 
   private

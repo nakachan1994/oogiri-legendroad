@@ -3,7 +3,7 @@ class ThemesController < ApplicationController
 
   def new
     @theme = Theme.new
-    @themes = current_user.themes.order(created_at: :desc)
+    @themes = current_user.themes.includes(:user, :answers).order(created_at: :desc)
   end
 
   def create
@@ -20,16 +20,16 @@ class ThemesController < ApplicationController
   end
 
   def index
-    @new_themes = Theme.all.theme_status?.order(updated_at: :desc).page(params[:new_page]).per(5)
-    @popular_themes = Theme.find(Answer.group(:theme_id).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
+    @new_themes = Theme.includes(:user, :answers).theme_status?.order(updated_at: :desc).page(params[:new_page]).per(5)
+    @popular_themes = Theme.find(Answer.includes(:user, :theme, :likes).group(:theme_id).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
     @popular_themes = Kaminari.paginate_array(@popular_themes).page(params[:popular_page]).per(5)
-    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
+    @pick_up_themes = Theme.find(Answer.includes(:user, :theme, :likes).group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
     @pick_up_themes = Kaminari.paginate_array(@pick_up_themes).page(params[:pick_up_page]).per(5)
   end
 
   def show
     @theme = Theme.find(params[:id])
-    @answers = Answer.where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.count <=> a.likes.count}
+    @answers = Answer.includes(:user, :theme, :likes).where(theme_id: @theme.id, status: true).sort{|a,b| b.likes.size <=> a.likes.size}
     @answer = Answer.new
     @total_exp_title = User.total_exp_title(User.total_exp(@theme.user))
   end
