@@ -116,3 +116,13 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+
+// スライドショー
+$(document).on('turbolinks:load', function(){
+  $('.slick').slick({
+    autoplay:true,
+    dots:true,
+    prevArrow: '<i class="fas fa-angle-left"></i>',
+    nextArrow: '<i class="fas fa-angle-right"></i>'
+  });
+});
