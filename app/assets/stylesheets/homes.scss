@@ -137,6 +137,10 @@
   top: 230px;
   color: gray;
 }
+.slick-dots{
+  color: rgb(116, 116, 116);
+  font-size: 50px;
+}
 
 /* スマートフォンサイズ（425px）以下の際に適用される設定 */
 @media screen and (max-width:425px) {
@@ -157,5 +161,4 @@
     color: gray;
   }
 }
-
 
