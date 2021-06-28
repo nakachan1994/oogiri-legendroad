@@ -43,9 +43,11 @@
           </div>
         <% end %>
       <% else %>
-        <i class="far fa-thumbs-up"></i><%= answer.likes.size %> Amazing
+        <div>
+          <i class="far fa-thumbs-up"></i><%= answer.likes.size %> Amazing
+        </div>
       <% end %>
-      回答日時:<%= answer.created_at.to_s(:datetime_jp) %>
+      <div>回答日時:<%= answer.created_at.to_s(:datetime_jp) %></div>
       <% if answer.theme.image == nil %>
       <div>
         <%= link_to "https://twitter.com/share?url=#{ request.url }

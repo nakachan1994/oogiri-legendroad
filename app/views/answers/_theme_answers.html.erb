@@ -44,7 +44,9 @@
             </div>
           <% end %>
         <% else %>
+        <div>
           <i class="far fa-thumbs-up"></i><%= answer.likes.count %> Amazing
+        </div>
         <% end %>
         回答日時:<%= answer.created_at.to_s(:datetime_jp) %>
       </div>
