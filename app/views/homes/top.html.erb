@@ -32,7 +32,7 @@
           <%= form_with model: @user, url: user_session_path, local: true do |f| %>
             <div class="field">
               <%= f.label :name %><br />
-              <%= f.text_field :name, autofocus: true, placeholder:'大喜利　太郎', class:'form-control' %>
+              <%= f.text_field :name, placeholder:'大喜利　太郎', class:'form-control' %>
             </div>
             <div class="field">
               <%= f.label :password %><br />
