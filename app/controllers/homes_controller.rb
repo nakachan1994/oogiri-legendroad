@@ -30,4 +30,7 @@ class HomesController < ApplicationController
 
   def guide
   end
+
+  def notice
+  end
 end

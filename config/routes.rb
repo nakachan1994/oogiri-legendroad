@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   root to: 'homes#top'
   get 'homes/guide'
+  get 'homes/notice'
   resources :users, only: [:index, :show, :edit, :update] do
     collection do
       get :month
