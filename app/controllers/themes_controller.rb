@@ -21,9 +21,9 @@ class ThemesController < ApplicationController
 
   def index
     @new_themes = Theme.includes(:user, :answers).theme_status?.order(updated_at: :desc).page(params[:new_page]).per(5)
-    @popular_themes = Theme.find(Answer.includes(:user, :theme, :likes).group(:theme_id).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
+    @popular_themes = Theme.find(Answer.group(:theme_id).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
     @popular_themes = Kaminari.paginate_array(@popular_themes).page(params[:popular_page]).per(5)
-    @pick_up_themes = Theme.find(Answer.includes(:user, :theme, :likes).group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
+    @pick_up_themes = Theme.find(Answer.group(:theme_id).where(created_at: Time.current.all_week).order(Arel.sql('count(theme_id) desc')).pluck(:theme_id))
     @pick_up_themes = Kaminari.paginate_array(@pick_up_themes).page(params[:pick_up_page]).per(5)
   end
 
