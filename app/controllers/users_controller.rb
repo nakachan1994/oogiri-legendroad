@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :month, :week, :day]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     # 経験値順に並び替え(通算)
@@ -85,9 +86,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user), flash: { alert: '権限がありません' }
-    end
   end
 
   def update
@@ -103,5 +101,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :email)
+  end
+
+  # current_userでないとデータ変更できない
+  def correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user), flash: { alert: '権限がありません' }
+    end
   end
 end

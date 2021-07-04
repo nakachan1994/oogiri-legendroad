@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :correct_user, only: [:destroy]
 
   def index
     @new_answers = Answer.includes(:user, :theme, :likes).answer_status?.order(created_at: :desc).page(params[:new_page]).per(5)
@@ -24,7 +25,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    Answer.find_by(id: params[:id], theme_id: params[:theme_id]).destroy
+    @answer.destroy
     flash.now[:alert] = '投稿を削除しました'
     # 非同期化のため@theme,@answersの値渡す
     @theme = Theme.find(params[:theme_id])
@@ -36,5 +37,13 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:content)
+  end
+
+  # current_userでないとデータ変更できない
+  def correct_user
+    @answer = Answer.find_by(id: params[:id], theme_id: params[:theme_id])
+    unless @answer.user_id == current_user.id
+      redirect_to theme_path(@answer.theme_id), flash: { alert: '権限がありません' }
+    end
   end
 end

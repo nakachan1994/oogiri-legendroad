@@ -1,5 +1,6 @@
 class ThemesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:destroy]
 
   def new
     @theme = Theme.new
@@ -35,7 +36,7 @@ class ThemesController < ApplicationController
   end
 
   def destroy
-    @theme = Theme.find(params[:id])
+    # @theme = Theme.find(params[:id])
     @theme.destroy
     flash.now[:alert] = 'お題を削除しました'
     @themes = current_user.themes.order(created_at: :desc)
@@ -46,5 +47,13 @@ class ThemesController < ApplicationController
 
   def theme_params
     params.require(:theme).permit(:image, :content)
+  end
+
+  # current_userでないとデータ変更できない
+  def correct_user
+    @theme = Theme.find(params[:id])
+    unless @theme.user_id == current_user.id
+      redirect_to new_theme_path, flash: { alert: '権限がありません' }
+    end
   end
 end
