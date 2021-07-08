@@ -5,7 +5,7 @@
   <% answers.each.with_index(1) do |answer, i| %>
     <div class="card mb-3">
       <div class="card-title ml-2 mt-2">
-        <!--最後の値をlast_likeに保存-->
+        <!--最初の値をlast_likeに保存-->
         <% if i == 1 %>
           <% last_like = answer.likes.count %>
         <% end %>
