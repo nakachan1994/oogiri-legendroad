@@ -36,7 +36,7 @@ $(window).on('scroll', function() {
     }
 });
 
-// タブの切り変え
+// タブの切り替え
 $(document).on('turbolinks:load', function() {
   $(function() {
     $('.tab').click(function(){
